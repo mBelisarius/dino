@@ -1,0 +1,76 @@
+# Ignore default build directory
+cmake-build-*/
+build/
+
+# Ignore user's workspace
+workspace/
+
+# Ignore compile_commands.json file used for vim auto-completion
+compile_commands.json
+
+# IDE settings
+.idea/
+.vs/
+.vscode/
+
+# Test files
+_test*
+
+# Prerequisites
+*.d
+
+# Object files
+*.o
+*.ko
+*.obj
+*.elf
+*.slo
+
+# Linker output
+*.ilk
+*.map
+*.exp
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Libraries
+*.lib
+*.a
+*.la
+*.lo
+*.lai
+
+# Fortran module files
+*.mod
+*.smod
+
+# Shared objects (inc. Windows DLLs)
+*.dll
+*.so
+*.so.*
+*.dylib
+
+# Executables
+*.exe
+*.out
+*.app
+*.i*86
+*.x86_64
+*.hex
+
+# Debug files
+*.dSYM/
+*.su
+*.idb
+*.pdb
+
+# Kernel Module Compile Results
+*.mod*
+*.cmd
+.tmp_versions/
+modules.order
+Module.symvers
+Mkfile.old
+dkms.conf
