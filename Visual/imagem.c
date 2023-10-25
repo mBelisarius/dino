@@ -7,7 +7,7 @@ int main() {
     const char* filename = "dino.png";
     int width, height, channels;
     unsigned char* image = stbi_load(filename, &width, &height, &channels, STBI_rgb);
-    int dino[30][30];
+    int dino[8][16];
 
     if (image != NULL) {
         int threshold = 128; // Limiar (ajuste conforme necessário)
@@ -44,7 +44,7 @@ int main() {
     {
         for (int x = 0; x < width; x++) 
         {
-            printf("%i ", dino[x][y]);
+            printf("%i", dino[x][y]);
         }
         printf("\n");
     }
