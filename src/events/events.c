@@ -2,12 +2,16 @@
 #include <stdlib.h>
 #include <conio.h>
 
-int main(void)
+char user_input;
+
+int get_input()
 {
-    char ch;
-    printf("Press 'q' to exit prom program\n");
-    do{
-        ch = _getch();
-        printf("%c (%d)\n", ch, ch);
-    } while( ch != 'q');
+    if (_kbhit())
+    {
+        user_input = _getch();    
+        int int_input = user_input;    
+        return int_input;
+    }   
+    return -1;
 }
+
