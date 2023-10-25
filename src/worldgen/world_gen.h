@@ -34,6 +34,6 @@ void printMatrix();
 void fillMatrix();
 void generateObject();
 void moveObjects();
-void run();
+void run(Object *dino);
 
 #endif
