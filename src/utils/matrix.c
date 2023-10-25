@@ -1,12 +1,6 @@
-#include <stdio.h> //struct armazena vetor qtd de llinhas e colunas
-//funcao p pegar o indice dele
+#include <stdio.h>
 #include <stdlib.h>
-
-typedef struct{
-    int *vector;
-    int lines;
-    int columns;
-} Matrix;
+#include "matrix.h"
 
 void buildMatrix(Matrix *x){
     x->vector = malloc((x->lines * x->columns) * sizeof(int));
@@ -45,31 +39,4 @@ void showMatrix(Matrix *x){
         }
         printf("\n");
     }
-}
-
-int main()
-{
-    int matrix[3][3] =
-    {
-        {1, 2, 3},
-        {4, 5, 6},
-        {7, 8, 9}
-    };
-
-    Matrix vetor;
-    vetor.lines = 3;
-    vetor.columns = 3;
-
-    buildMatrix(&vetor);
-    fillMatrix(&vetor, 0);
-    showMatrix(&vetor);
-
-    setPosition(&vetor, 1,1,16);
-    showMatrix(&vetor);
-
-    getPosition(&vetor, 1, 1);
-
-    free(vetor.vector);
- 
-    return 0;
 }
