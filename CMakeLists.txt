@@ -35,9 +35,18 @@ target_include_directories("${ProjectName}" PUBLIC "${CMAKE_SOURCE_DIR}")
 
 set_target_properties("${ProjectName}" PROPERTIES LINKER_LANGUAGE C)
 
+file(GLOB UTILS_SOURCES src/utils/*.c)
+file(GLOB UTILS_HEADERS src/utils/*.h)
+add_library(utils ${UTILS_SOURCES} ${UTILS_HEADERS})
+target_include_directories(utils PUBLIC "${CMAKE_SOURCE_DIR}/src/utils")
+
+file(GLOB WORLDGEN_SOURCES src/worldgen/*.c)
+file(GLOB WORLDGEN_HEADERS src/worldgen/*.h)
+add_library(worldgen ${WORLDGEN_SOURCES} ${WORLDGEN_HEADERS})
+target_include_directories(worldgen PUBLIC "${CMAKE_SOURCE_DIR}/src/worldgen")
 # --- main
 
 add_executable("${ProjectName}-main" src/main.c)
-target_link_libraries("${ProjectName}-main" PUBLIC "${ProjectName}")
+target_link_libraries("${ProjectName}-main" PUBLIC "${ProjectName}" utils worldgen)
 
 # =========================================================
