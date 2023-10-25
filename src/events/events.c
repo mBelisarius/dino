@@ -5,6 +5,7 @@
 #include "../worldgen/world_gen.h"
 
 bool crouched = false;
+char user_input;
 
 void perceive(Object* dino, int** game_matrix, int command)
 {
@@ -45,4 +46,15 @@ void perceive(Object* dino, int** game_matrix, int command)
             // faz nada
             break;
     }
+}
+
+int get_input()
+{
+    if (_kbhit())
+    {
+        user_input = _getch();    
+        int int_input = user_input;    
+        return int_input;
+    }   
+    return -1;
 }
