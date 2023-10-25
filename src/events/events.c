@@ -58,3 +58,13 @@ int get_input()
     }   
     return -1;
 }
+
+void jump(Object* dino, int* movements, unsigned length)
+{
+    dino->y += movements[0];
+
+    for (int i = 0; i < length-1; i++)
+    {
+
+    }
+}
