@@ -43,6 +43,10 @@ void fillMatrix(Object *dino) {
 
     //Add dino to the matrix overlaying the objects
     for (int i = dino->y; i < Y; i++) {
+        if(game_matrix[i][dino->x] != 0){
+            // throw error
+            // Sleep(50000);
+        }
         game_matrix[i][dino->x] = (int)dino->type;
     }
 }

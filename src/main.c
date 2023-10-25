@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "worldgen/world_gen.h"
+#include "./worldgen/world_gen.h"
 
 int main()
 {
