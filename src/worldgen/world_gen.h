@@ -37,8 +37,8 @@ extern int offset;
 extern Object objects[X];
 
 int randomInt(int min, int max);
-void printMatrix();
-void fillMatrix();
+void printMatrix(Object* dino);
+void fillMatrix(Object *dino);
 void generateObject();
 void moveObjects();
 void run(Object *dino);

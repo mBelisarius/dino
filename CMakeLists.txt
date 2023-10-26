@@ -50,9 +50,15 @@ file(GLOB GRAPHICS_SOURCES src/graphics/*.c)
 file(GLOB GRAPHICS_HEADERS src/graphics/*.h)
 add_library(graphics ${GRAPHICS_SOURCES} ${GRAPHICS_HEADERS})
 target_include_directories(graphics PUBLIC "${CMAKE_SOURCE_DIR}/src/graphics")
+
+
+file(GLOB EVENTS_SOURCES src/events/*.c)
+file(GLOB EVENTS_HEADERS src/events/*.h)
+add_library(events ${EVENTS_SOURCES} ${EVENTS_HEADERS})
+target_include_directories(events PUBLIC "${CMAKE_SOURCE_DIR}/src/events")
 # --- main
 
 add_executable("${ProjectName}-main" src/main.c)
-target_link_libraries("${ProjectName}-main" PUBLIC "${ProjectName}" utils worldgen graphics)
+target_link_libraries("${ProjectName}-main" PUBLIC "${ProjectName}" utils worldgen graphics events)
 
 # =========================================================
