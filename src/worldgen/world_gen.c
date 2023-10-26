@@ -43,7 +43,9 @@ void fillMatrix(Object *dino) {
 
     //Add dino to the matrix overlaying the objects
     for (int i = dino->y; i < Y; i++) {
-        game_matrix[i][dino->x] = (int)dino->type;
+        if(game_matrix[i][dino->x] == 0){
+            game_matrix[i][dino->x] = (int)dino->type;
+        }
     }
 }
 
