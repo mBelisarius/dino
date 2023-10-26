@@ -8,8 +8,8 @@ void render(int matrix[6][24])
         for(int j = 0; j < 24; j++){
             for(int k = 0; k < 8; k++){
                 printer(matrix[i][j], k);
-                printf("\n");
             }
+            printf("\n");
         }
     }
 }
@@ -36,14 +36,92 @@ void printer(int current_int, int count_line)
 
 
 void print_cacto(int count){
-
+    switch (count)
+    {
+    case 0:
+        printf("11111111");
+        break;
+    case 1:
+        printf("11111111");
+        break;
+    case 2:
+        printf("11111111");
+        break;
+    case 3:
+        printf("11111111");
+        break;
+    case 4:
+        printf("11111111");
+        break;
+    case 5:
+        printf("11111111");
+        break;
+    case 6:
+        printf("11111111");
+        break;
+    case 7:
+        printf("11111111");
+        break;
+    }
 }
 
 
 void print_ptero(int count){
-
+    switch (count)
+    {
+    case 0:
+        printf("22222222");
+        break;
+    case 1:
+        printf("22222222");
+        break;
+    case 2:
+        printf("22222222");
+        break;
+    case 3:
+        printf("22222222");
+        break;
+    case 4:
+        printf("22222222");
+        break;
+    case 5:
+        printf("22222222");
+        break;
+    case 6:
+        printf("22222222");
+        break;
+    case 7:
+        printf("22222222");
+        break;
+    }
 }
 
 void print_dino(int count){
-
+    switch (count)
+    {
+    case 0:
+        printf("33333333");
+        break;
+    case 1:
+        printf("33333333");
+        break;
+    case 2:
+        printf("33333333");
+        break;
+    case 3:
+        printf("33333333");
+        break;
+    case 4:
+        printf("33333333");
+        break;
+    case 5:
+        printf("33333333");
+        break;
+    case 6:
+        printf("33333333");
+        break;
+    case 7:
+        printf("33333333");
+        break;
+    }
 }

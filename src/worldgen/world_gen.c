@@ -127,6 +127,7 @@ void run(Object *dino) {
 
         fillMatrix(dino);
         printMatrix();
+
         moveObjects();
 
         velocity -= velocity > 50 ? 5 : 0;
