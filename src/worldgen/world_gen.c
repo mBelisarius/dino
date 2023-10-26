@@ -139,7 +139,7 @@ void run(Object *dino)
         printMatrix(dino);
 
         int command = get_input();
-        int is_alive = perceive(dino, game_matrix, command);
+        int is_alive = perceive(dino, command);
 
         moveObjects();
 
