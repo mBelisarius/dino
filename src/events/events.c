@@ -46,7 +46,7 @@ int perceive(Object* dino, int game_matrix[6][24], int command)
     {
         case 119:
             jumping = true;
-            fill_movements(movements);
+            fill_movements();
             jump(dino, movements, &movements_length);
 
         case 115:

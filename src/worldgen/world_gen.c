@@ -137,9 +137,8 @@ void run(Object *dino)
 
         fillMatrix(dino);
         printMatrix(dino);
-        
-        int command = get_input();
 
+        int command = get_input();
         int is_alive = perceive(dino, game_matrix, command);
 
         moveObjects();
