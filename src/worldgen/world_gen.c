@@ -147,7 +147,7 @@ void run(Object *dino)
 
         if (is_alive == -1)
         {
-            break;
+            continue;
         }
 
         speed -= speed > 50 ? 5 : 0;

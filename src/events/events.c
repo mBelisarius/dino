@@ -5,7 +5,7 @@
 #include "../worldgen/world_gen.h"
 #include "events.h"
 
-int* movements, movements_length = 6;
+int movements[6], movements_length = 6;
 int movements_crouch[4], fill_movements_crouch_length = 3;
 bool crouched = false, jumping = false;
 char user_input;
@@ -25,7 +25,7 @@ int perceive(Object* dino, int command)
         int curr_row = dino->y;
         for (int i = 0; i < X; i++)
         {
-            dinosaur_parts += (game_matrix[i][curr_row] == Dino) ? 1 : 0;
+            dinosaur_parts += (game_matrix[curr_row][i] == (int)Dino) ? 1 : 0;
             crouch(dino);
         }
     }
@@ -33,7 +33,7 @@ int perceive(Object* dino, int command)
     {
         for (int i = 0; i < Y; i++)
         {
-            dinosaur_parts += (game_matrix[i][4] == Dino) ? 1 : 0;
+            dinosaur_parts += (game_matrix[i][4] == (int)Dino) ? 1 : 0;
         }
     }
 
@@ -75,14 +75,13 @@ int get_input()
 
 void fill_movements()
 {
-    movements = malloc(6 * sizeof(int));
-    movements_length = 6;
     int arr_copied[6] = {-2, -1, 0, 0, 1, 2};
 
     for (int i = 0; i < 6; i++)
     {
         movements[i] = arr_copied[i];
     }
+    movements_length = 6;
 }
 
 void fill_movements_crouch()
@@ -104,14 +103,10 @@ void jump(Object* dino)
         movements[i] = movements[i+1];
     }
 
-    // movements = realloc(movements, ((*length)-1) * sizeof(int));
-
     movements_length--;
-
-    if (movements_length == 0)
+    if (movements_length == -1)
     {
         jumping = false;
-        free(movements);
     }
 }
 
