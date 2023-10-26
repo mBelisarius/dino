@@ -51,7 +51,7 @@ int perceive(Object* dino, int command)
 
         case 115:
             crouched = true;
-            fill_movements_crouch(movements_crouch);
+            fill_movements_crouch();
             crouch(dino);
         
         default:
