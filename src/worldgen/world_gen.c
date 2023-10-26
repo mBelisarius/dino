@@ -1,4 +1,5 @@
 #include "world_gen.h"
+#include "../events/events.h"
 
 int game_matrix[Y][X];
 int obj_index = 0, offset = DEFAULT_OFFSET;
@@ -124,6 +125,9 @@ void run(Object *dino) {
         system("cls");
 
         generateObject();
+
+        int command = get_input();
+        perceive(dino, game_matrix, command);
 
         fillMatrix(dino);
         printMatrix();
