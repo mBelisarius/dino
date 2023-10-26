@@ -5,9 +5,9 @@
 #include "../worldgen/world_gen.h"
 #include "events.h"
 
-int movements[6], movements_length = 6;
+int* movements, movements_length = 6;
 int movements_crouch[4], fill_movements_crouch_length = 3;
-bool crouched = false, jumping = true;
+bool crouched = false, jumping = false;
 char user_input;
 
 void perceive(Object* dino, int game_matrix[6][24], int command)
@@ -39,7 +39,7 @@ void perceive(Object* dino, int game_matrix[6][24], int command)
 
     if (dinosaur_parts != 2)
     {
-        // morreu
+        
     }
 
     switch (command)
@@ -70,10 +70,11 @@ int get_input()
     return -1;
 }
 
-void fill_movements(int* movements)
+void fill_movements()
 {
-    realloc(movements, 6 * sizeof(int));
-    int arr_copied[6] = {2, 1, 0, 0, -1, -2};
+    movements = malloc(6 * sizeof(int));
+    movements_length = 6;
+    int arr_copied[6] = {-2, -1, 0, 0, 1, 2};
 
     for (int i = 0; i < 6; i++)
     {
@@ -87,17 +88,7 @@ void fill_movements_crouch()
     int arr_copied[4] = {-1,0,0,1};
     for (int i = 0; i < 4 ; i++)
     {
-        movements_crouch[i] =arr_copied[i];
-    }
-}
-
-void fill_movements_crouch()
-{
-    realloc(movements_crouch, 4 * sizeof(int));
-    int arr_copied[4] = {-1,0,0,1};
-    for (int i = 0; i < 4 ; i++)
-    {
-        movements_crouch[i] =arr_copied[i];
+        movements_crouch[i] = arr_copied[i];
     }
 }
 
@@ -105,17 +96,19 @@ void jump(Object* dino, int* movements, int* length)
 {
     dino->y += movements[0];
 
-    for (int i = 0; i < *length-1; i++)
+    for (int i = 0; i < (*length)-1; i++)
     {
         movements[i] = movements[i+1];
     }
-    realloc(movements, (*length-1) * sizeof(int));
 
-    *length--;
+    movements = realloc(movements, ((*length)-1) * sizeof(int));
 
-    if (*length == 0)
+    (*length)--;
+
+    if ((*length) == 0)
     {
         jumping = false;
+        free(movements);
     }
 }
 
@@ -123,13 +116,13 @@ void crouch(Object* dino, int* movements_crouch, int* length)
 {
     dino->y += movements_crouch[0];
 
-    for (int i = 0; i < *length-1; i++)
+    for (int i = 0; i < (*length)-1; i++)
     {
         movements[i] = movements[i+1];
     }
-    realloc(movements, (*length-1) * sizeof(int));
+    realloc(movements, ((*length)-1) * sizeof(int));
 
-    *length--;
+    (*length)--;
 
     if (*length == 0)
     {

@@ -12,7 +12,7 @@ int randomInt(int min, int max)
 }
 
 // Debug: prints the matrix
-void printMatrix()
+void printMatrix(Object* dino)
 {
     for (int i = 0; i < Y; i++)
     {
@@ -22,6 +22,8 @@ void printMatrix()
         }
         printf("\n");
     }
+
+    printf("Dino Y: %d", dino->y);
 }
 
 void fillMatrix(Object *dino)
@@ -137,7 +139,7 @@ void run(Object *dino)
         perceive(dino, game_matrix, command);
 
         fillMatrix(dino);
-        printMatrix();
+        printMatrix(dino);
         moveObjects();
 
         speed -= speed > 50 ? 5 : 0;
