@@ -50,8 +50,9 @@ void perceive(Object* dino, int game_matrix[6][24], int command)
             jump(dino, movements, &movements_length);
 
         case 115:
-            // função de abaixar
-            break;
+            crouched = true;
+            fill_movements_crouch(movements_crouch);
+            crouch(dino, movements_crouch, &fill_movements_crouch_length);
         
         default:
             // faz nada
@@ -118,7 +119,7 @@ void crouch(Object* dino, int* movements_crouch, int* length)
 
     for (int i = 0; i < (*length)-1; i++)
     {
-        movements[i] = movements[i+1];
+        movements_crouch[i] = movements_crouch[i+1];
     }
     realloc(movements, ((*length)-1) * sizeof(int));
 
@@ -126,6 +127,6 @@ void crouch(Object* dino, int* movements_crouch, int* length)
 
     if (*length == 0)
     {
-        jumping = false;
+       crouched = false;
     }
 }
