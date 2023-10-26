@@ -6,6 +6,7 @@
 #include <time.h>
 #include <Windows.h>
 #include <sys\timeb.h>
+#include "../graphics/render.h"
 
 #include "../utils/utils.h"
 

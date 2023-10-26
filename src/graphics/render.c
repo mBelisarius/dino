@@ -1,16 +1,16 @@
-#include <stdio.h>
-#include <stdlib.h>
+#include "render.h"
 
 
 void render(int matrix[6][24])
 {
     for(int i = 0; i < 6; i++){
-        for(int j = 0; j < 24; j++){
-            for(int k = 0; k < 8; k++){
-                printer(matrix[i][j], k);
+        for(int j = 0; j < 8; j++){
+            for(int k = 0; k < 24; k++){
+                printer(matrix[i][k], j);
             }
             printf("\n");
         }
+        
     }
 }
 
@@ -29,7 +29,7 @@ void printer(int current_int, int count_line)
         break;
     
     default:
-        printf("00000000");
+        printf("''''''''");
         break;
     }
 }

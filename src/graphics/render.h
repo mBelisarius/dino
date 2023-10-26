@@ -1,6 +1,9 @@
 #ifndef RENDER_H
 #define RENDER_H
 
+#include <stdio.h>
+#include <stdlib.h>
+
 
 void print_dino(int count);
 void print_ptero(int count);

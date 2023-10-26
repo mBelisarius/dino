@@ -44,9 +44,15 @@ file(GLOB WORLDGEN_SOURCES src/worldgen/*.c)
 file(GLOB WORLDGEN_HEADERS src/worldgen/*.h)
 add_library(worldgen ${WORLDGEN_SOURCES} ${WORLDGEN_HEADERS})
 target_include_directories(worldgen PUBLIC "${CMAKE_SOURCE_DIR}/src/worldgen")
+
+
+file(GLOB GRAPHICS_SOURCES src/graphics/*.c)
+file(GLOB GRAPHICS_HEADERS src/graphics/*.h)
+add_library(graphics ${GRAPHICS_SOURCES} ${GRAPHICS_HEADERS})
+target_include_directories(graphics PUBLIC "${CMAKE_SOURCE_DIR}/src/graphics")
 # --- main
 
 add_executable("${ProjectName}-main" src/main.c)
-target_link_libraries("${ProjectName}-main" PUBLIC "${ProjectName}" utils worldgen)
+target_link_libraries("${ProjectName}-main" PUBLIC "${ProjectName}" utils worldgen graphics)
 
 # =========================================================
