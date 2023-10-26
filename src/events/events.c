@@ -43,6 +43,7 @@ void perceive(Object* dino, int** game_matrix, int command)
     switch (command)
     {
         case 119:
+            jumping = true;
             fill_movements(movements);
             jump(dino, movements, &movements_length);
 
@@ -79,6 +80,24 @@ void fill_movements(int* movements)
 }
 
 void jump(Object* dino, int* movements, unsigned* length)
+{
+    dino->y += movements[0];
+
+    for (int i = 0; i < *length-1; i++)
+    {
+        movements[i] = movements[i+1];
+    }
+    realloc(movements, (*length-1) * sizeof(int));
+
+    *length--;
+
+    if (*length == 0)
+    {
+        jumping = false;
+    }
+}
+
+void crouched(Object* dino, int* movements, unsigned* length)
 {
     dino->y += movements[0];
 
