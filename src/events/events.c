@@ -6,6 +6,7 @@
 #include "events.h"
 
 int movements[6], movements_length = 6;
+int movements_crouch[4], fill_movements_crouch_length = 3;
 bool crouched = false, jumping = true;
 char user_input;
 
@@ -25,6 +26,7 @@ void perceive(Object* dino, int** game_matrix, int command)
         for (int i = 0; i < X; i++)
         {
             dinosaur_parts += (game_matrix[i][curr_row] == Dino) ? 1 : 0;
+            crouch(dino, movements_crouch,&fill_movements_crouch_length);
         }
     }
     else
@@ -79,6 +81,16 @@ void fill_movements(int* movements)
     }
 }
 
+void fill_movements_crouch()
+{
+    realloc(movements_crouch, 4 * sizeof(int));
+    int arr_copied[4] = {-1,0,0,1};
+    for (int i = 0; i < 4 ; i++)
+    {
+        movements_crouch[i] =arr_copied[i];
+    }
+}
+
 void jump(Object* dino, int* movements, unsigned* length)
 {
     dino->y += movements[0];
@@ -97,9 +109,9 @@ void jump(Object* dino, int* movements, unsigned* length)
     }
 }
 
-void crouched(Object* dino, int* movements, unsigned* length)
+void crouch(Object* dino, int* movements_crouch, unsigned* length)
 {
-    dino->y += movements[0];
+    dino->y += movements_crouch[0];
 
     for (int i = 0; i < *length-1; i++)
     {
