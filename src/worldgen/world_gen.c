@@ -135,12 +135,21 @@ void run(Object *dino)
 
         generateObject();
 
-        int command = get_input();
-        perceive(dino, game_matrix, command);
-
         fillMatrix(dino);
         printMatrix(dino);
+        
+        int command = get_input();
+
+        int is_alive = perceive(dino, game_matrix, command);
+
         moveObjects();
+
+      
+
+        if (is_alive == -1)
+        {
+            break;
+        }
 
         speed -= speed > 50 ? 5 : 0;
     }
