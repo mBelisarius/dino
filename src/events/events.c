@@ -9,7 +9,7 @@ int movements[6], movements_length = 6;
 bool crouched = false, jumping = true;
 char user_input;
 
-void perceive(Object* dino, int** game_matrix, int command)
+void perceive(Object* dino, int game_matrix[6][24], int command)
 {
     if (jumping)
     {
