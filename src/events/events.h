@@ -6,6 +6,7 @@
 #include <stdbool.h>
 
 #include "../worldgen/world_gen.h"
+#include "../score/score.h"
 
 int perceive(Object *dino, int command);
 int get_input();

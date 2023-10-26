@@ -9,7 +9,6 @@
 
 #include "../score/score.h"
 #include "../graphics/render.h"
-#include "../events/events.h"
 #include "../utils/utils.h"
 
 #define DEFAULT_OFFSET 12
@@ -44,5 +43,6 @@ void fillMatrix(Object *dino);
 void generateObject();
 void moveObjects();
 void run(Object *dino);
+void reset();
 
 #endif
