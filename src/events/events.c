@@ -95,7 +95,7 @@ void fill_movements_crouch()
     }
 }
 
-void jump(Object* dino, int* movements, int* length)
+void jump(Object* dino, int* length)
 {
     dino->y += movements[0];
 
@@ -115,7 +115,7 @@ void jump(Object* dino, int* movements, int* length)
     }
 }
 
-void crouch(Object* dino, int* movements_crouch, int* length)
+void crouch(Object* dino, int* length)
 {
     dino->y += movements_crouch[0];
 
