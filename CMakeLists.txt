@@ -56,9 +56,14 @@ file(GLOB EVENTS_SOURCES src/events/*.c)
 file(GLOB EVENTS_HEADERS src/events/*.h)
 add_library(events ${EVENTS_SOURCES} ${EVENTS_HEADERS})
 target_include_directories(events PUBLIC "${CMAKE_SOURCE_DIR}/src/events")
+
+file(GLOB SCORE_SOURCES src/score/*.c)
+file(GLOB SCORE_HEADERS src/score/*.h)
+add_library(score ${SCORE_SOURCES} ${SCORE_HEADERS})
+target_include_directories(score PUBLIC "${CMAKE_SOURCE_DIR}/src/score")
 # --- main
 
 add_executable("${ProjectName}-main" src/main.c)
-target_link_libraries("${ProjectName}-main" PUBLIC "${ProjectName}" utils worldgen graphics events)
+target_link_libraries("${ProjectName}-main" PUBLIC "${ProjectName}" utils worldgen graphics events score)
 
 # =========================================================

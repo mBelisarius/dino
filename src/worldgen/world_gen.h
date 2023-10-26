@@ -6,8 +6,10 @@
 #include <time.h>
 #include <Windows.h>
 #include <sys\timeb.h>
-#include "../graphics/render.h"
 
+#include "../score/score.h"
+#include "../graphics/render.h"
+#include "../events/events.h"
 #include "../utils/utils.h"
 
 #define DEFAULT_OFFSET 12
@@ -37,7 +39,7 @@ extern int offset;
 extern Object objects[X];
 
 int randomInt(int min, int max);
-void printMatrix(Object* dino);
+void printMatrix(Object *dino);
 void fillMatrix(Object *dino);
 void generateObject();
 void moveObjects();

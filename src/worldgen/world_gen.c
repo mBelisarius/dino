@@ -1,5 +1,4 @@
 #include "world_gen.h"
-#include "../events/events.h"
 
 int game_matrix[Y][X];
 int obj_index = 0, offset = DEFAULT_OFFSET, deaths = 0;
@@ -144,8 +143,6 @@ void run(Object *dino)
         int is_alive = perceive(dino, command);
 
         moveObjects();
-
-        addScore();
 
         addScore();
 
