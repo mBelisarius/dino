@@ -8,6 +8,7 @@ int main()
     ERASE_ALL();
     Object dino = {4, 4, Dino};
 
+    system("cls");
     for (;;)
     {
         run(&dino);
