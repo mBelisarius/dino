@@ -14,7 +14,7 @@ int perceive(Object* dino, int game_matrix[6][24], int command)
 {
     if (jumping)
     {
-        jump(dino, movements, &movements_length);
+        jump(dino, &movements_length);
         return 0;
     }
 
@@ -26,7 +26,7 @@ int perceive(Object* dino, int game_matrix[6][24], int command)
         for (int i = 0; i < X; i++)
         {
             dinosaur_parts += (game_matrix[i][curr_row] == Dino) ? 1 : 0;
-            crouch(dino, movements_crouch,&fill_movements_crouch_length);
+            crouch(dino, &fill_movements_crouch_length);
         }
     }
     else
@@ -47,12 +47,12 @@ int perceive(Object* dino, int game_matrix[6][24], int command)
         case 119:
             jumping = true;
             fill_movements();
-            jump(dino, movements, &movements_length);
+            jump(dino, &movements_length);
 
         case 115:
             crouched = true;
             fill_movements_crouch(movements_crouch);
-            crouch(dino, movements_crouch, &fill_movements_crouch_length);
+            crouch(dino, &fill_movements_crouch_length);
         
         default:
             // faz nada
