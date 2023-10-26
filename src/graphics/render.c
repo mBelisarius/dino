@@ -1,30 +1,32 @@
 #include "render.h"
 
-
 void render(int matrix[6][24])
 {
     int dinos = 0;
 
-    for(int i = 0; i < 6; i++){
+    for (int i = 0; i < 6; i++)
+    {
 
-        for(int j = 0; j < 8; j++){
+        for (int j = 0; j < 8; j++)
+        {
 
-            for(int k = 0; k < 24; k++){
+            for (int k = 0; k < 24; k++)
+            {
 
                 printer(matrix[i][k], j, dinos);
 
-                if(matrix[i][k] == 3) dinos++;
+                if (matrix[i][k] == 3)
+                    dinos++;
             }
             printf("\n");
         }
-        
     }
 }
 
-
 void printer(int current_int, int count_line, int dinos)
 {
-    switch (current_int){
+    switch (current_int)
+    {
     case 1:
         print_cacto(count_line);
         break;
@@ -40,8 +42,8 @@ void printer(int current_int, int count_line, int dinos)
     }
 }
 
-
-void print_cacto(int count){
+void print_cacto(int count)
+{
     switch (count)
     {
     case 0:
@@ -71,8 +73,8 @@ void print_cacto(int count){
     }
 }
 
-
-void print_ptero(int count){
+void print_ptero(int count)
+{
     switch (count)
     {
     case 0:
@@ -102,7 +104,8 @@ void print_ptero(int count){
     }
 }
 
-void print_dino(int dinos){
+void print_dino(int dinos)
+{
     switch (dinos)
     {
     case 0:

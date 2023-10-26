@@ -134,8 +134,8 @@ void run(Object *dino)
 
         fillMatrix(dino);
         // printMatrix();
-        render(game_matrix);
 
+        render(game_matrix);
 
         moveObjects();
 
