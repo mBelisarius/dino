@@ -3,10 +3,17 @@
 
 void render(int matrix[6][24])
 {
+    int dinos = 0;
+
     for(int i = 0; i < 6; i++){
+
         for(int j = 0; j < 8; j++){
+
             for(int k = 0; k < 24; k++){
-                printer(matrix[i][k], j);
+
+                printer(matrix[i][k], j, dinos);
+
+                if(matrix[i][k] == 3) dinos++;
             }
             printf("\n");
         }
@@ -15,7 +22,7 @@ void render(int matrix[6][24])
 }
 
 
-void printer(int current_int, int count_line)
+void printer(int current_int, int count_line, int dinos)
 {
     switch (current_int){
     case 1:
@@ -25,9 +32,8 @@ void printer(int current_int, int count_line)
         print_ptero(count_line);
         break;
     case 3:
-        print_dino(count_line);
+        print_dino(dinos);
         break;
-    
     default:
         printf("''''''''");
         break;
@@ -96,32 +102,56 @@ void print_ptero(int count){
     }
 }
 
-void print_dino(int count){
-    switch (count)
+void print_dino(int dinos){
+    switch (dinos)
     {
     case 0:
-        printf("33333333");
+        printf("%s", DINO_FRAME1_LINE00);
         break;
     case 1:
-        printf("33333333");
+        printf("%s", DINO_FRAME1_LINE01);
         break;
     case 2:
-        printf("33333333");
+        printf("%s", DINO_FRAME1_LINE02);
         break;
     case 3:
-        printf("33333333");
+        printf("%s", DINO_FRAME1_LINE03);
         break;
     case 4:
-        printf("33333333");
+        printf("%s", DINO_FRAME1_LINE04);
         break;
     case 5:
-        printf("33333333");
+        printf("%s", DINO_FRAME1_LINE05);
         break;
     case 6:
-        printf("33333333");
+        printf("%s", DINO_FRAME1_LINE06);
         break;
     case 7:
-        printf("33333333");
+        printf("%s", DINO_FRAME1_LINE07);
+        break;
+    case 8:
+        printf("%s", DINO_FRAME1_LINE08);
+        break;
+    case 9:
+        printf("%s", DINO_FRAME1_LINE09);
+        break;
+    case 10:
+        printf("%s", DINO_FRAME1_LINE10);
+        break;
+    case 11:
+        printf("%s", DINO_FRAME1_LINE11);
+        break;
+    case 12:
+        printf("%s", DINO_FRAME1_LINE12);
+        break;
+    case 13:
+        printf("%s", DINO_FRAME1_LINE13);
+        break;
+    case 14:
+        printf("%s", DINO_FRAME1_LINE14);
+        break;
+    case 15:
+        printf("%s", DINO_FRAME1_LINE15);
         break;
     }
 }
