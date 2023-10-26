@@ -145,6 +145,10 @@ void run(Object *dino)
 
         moveObjects();
 
+        addScore();
+
+        addScore();
+
         if (is_alive == -1)
         {
             deaths++;
