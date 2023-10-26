@@ -3,12 +3,20 @@
 #include <conio.h>
 #include <stdbool.h>
 #include "../worldgen/world_gen.h"
+#include "events.h"
 
-bool crouched = false;
+int movements[6], movements_length = 6;
+bool crouched = false, jumping = true;
 char user_input;
 
 void perceive(Object* dino, int** game_matrix, int command)
 {
+    if (jumping)
+    {
+        jump(dino, movements, &movements_length);
+        return;
+    }
+
     short dinosaur_parts = 0; // keeps track of how many dinosaur parts are visible
 
     if (crouched)
@@ -35,8 +43,8 @@ void perceive(Object* dino, int** game_matrix, int command)
     switch (command)
     {
         case 119:
-            // função de pular
-            break;
+            fill_movements(movements);
+            jump(dino, movements, &movements_length);
 
         case 115:
             // função de abaixar
@@ -59,12 +67,31 @@ int get_input()
     return -1;
 }
 
-void jump(Object* dino, int* movements, unsigned length)
+void fill_movements(int* movements)
+{
+    realloc(movements, 6 * sizeof(int));
+    int arr_copied[6] = {2, 1, 0, 0, -1, -2};
+
+    for (int i = 0; i < 6; i++)
+    {
+        movements[i] = arr_copied[i];
+    }
+}
+
+void jump(Object* dino, int* movements, unsigned* length)
 {
     dino->y += movements[0];
 
-    for (int i = 0; i < length-1; i++)
+    for (int i = 0; i < *length-1; i++)
     {
+        movements[i] = movements[i+1];
+    }
+    realloc(movements, (*length-1) * sizeof(int));
 
+    *length--;
+
+    if (*length == 0)
+    {
+        jumping = false;
     }
 }
