@@ -2,7 +2,7 @@
 #include "../events/events.h"
 
 int game_matrix[Y][X];
-int obj_index = 0, offset = DEFAULT_OFFSET;
+int obj_index = 0, offset = DEFAULT_OFFSET, deaths = 0;
 
 Object objects[X];
 
@@ -12,7 +12,7 @@ int randomInt(int min, int max)
 }
 
 // Debug: prints the matrix
-void printMatrix(Object* dino)
+void printMatrix(Object *dino)
 {
     for (int i = 0; i < Y; i++)
     {
@@ -143,12 +143,13 @@ void run(Object *dino)
 
         moveObjects();
 
-      
-
         if (is_alive == -1)
         {
+            deaths++;
             continue;
         }
+
+        printf("\nDeaths: %d", deaths);
 
         speed -= speed > 50 ? 5 : 0;
     }
