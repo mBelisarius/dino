@@ -10,11 +10,11 @@ int movements_crouch[4], fill_movements_crouch_length = 3;
 bool crouched = false, jumping = false;
 char user_input;
 
-int perceive(Object* dino, int game_matrix[6][24], int command)
+int perceive(Object* dino, int command)
 {
     if (jumping)
     {
-        jump(dino, &movements_length);
+        jump(dino);
         return 0;
     }
 
@@ -26,7 +26,7 @@ int perceive(Object* dino, int game_matrix[6][24], int command)
         for (int i = 0; i < X; i++)
         {
             dinosaur_parts += (game_matrix[i][curr_row] == Dino) ? 1 : 0;
-            crouch(dino, &fill_movements_crouch_length);
+            crouch(dino);
         }
     }
     else
@@ -47,12 +47,12 @@ int perceive(Object* dino, int game_matrix[6][24], int command)
         case 119:
             jumping = true;
             fill_movements();
-            jump(dino, &movements_length);
+            jump(dino);
 
         case 115:
             crouched = true;
             fill_movements_crouch(movements_crouch);
-            crouch(dino, &fill_movements_crouch_length);
+            crouch(dino);
         
         default:
             // faz nada
@@ -95,39 +95,39 @@ void fill_movements_crouch()
     }
 }
 
-void jump(Object* dino, int* length)
+void jump(Object* dino)
 {
     dino->y += movements[0];
 
-    for (int i = 0; i < (*length)-1; i++)
+    for (int i = 0; i < movements_length-1; i++)
     {
         movements[i] = movements[i+1];
     }
 
     // movements = realloc(movements, ((*length)-1) * sizeof(int));
 
-    (*length)--;
+    movements_length--;
 
-    if ((*length) == 0)
+    if (movements_length == 0)
     {
         jumping = false;
         free(movements);
     }
 }
 
-void crouch(Object* dino, int* length)
+void crouch(Object* dino)
 {
     dino->y += movements_crouch[0];
 
-    for (int i = 0; i < (*length)-1; i++)
+    for (int i = 0; i < fill_movements_crouch_length-1; i++)
     {
         movements_crouch[i] = movements_crouch[i+1];
     }
-    realloc(movements, ((*length)-1) * sizeof(int));
+    realloc(movements, (fill_movements_crouch_length-1) * sizeof(int));
 
-    (*length)--;
+    fill_movements_crouch_length--;
 
-    if (*length == 0)
+    if (fill_movements_crouch_length == 0)
     {
        crouched = false;
     }
