@@ -44,9 +44,14 @@ file(GLOB WORLDGEN_SOURCES src/worldgen/*.c)
 file(GLOB WORLDGEN_HEADERS src/worldgen/*.h)
 add_library(worldgen ${WORLDGEN_SOURCES} ${WORLDGEN_HEADERS})
 target_include_directories(worldgen PUBLIC "${CMAKE_SOURCE_DIR}/src/worldgen")
+
+file(GLOB EVENTS_SOURCES src/events/*.c)
+file(GLOB EVENTS_HEADERS src/events/*.h)
+add_library(events ${EVENTS_SOURCES} ${EVENTS_HEADERS})
+target_include_directories(events PUBLIC "${CMAKE_SOURCE_DIR}/src/events")
 # --- main
 
 add_executable("${ProjectName}-main" src/main.c)
-target_link_libraries("${ProjectName}-main" PUBLIC "${ProjectName}" utils worldgen)
+target_link_libraries("${ProjectName}-main" PUBLIC "${ProjectName}" utils worldgen events)
 
 # =========================================================
