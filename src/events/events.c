@@ -10,7 +10,7 @@ int movements_crouch[4], fill_movements_crouch_length = 3;
 bool crouched = false, jumping = true;
 char user_input;
 
-void perceive(Object* dino, int** game_matrix, int command)
+void perceive(Object* dino, int game_matrix[6][24], int command)
 {
     if (jumping)
     {
@@ -91,7 +91,17 @@ void fill_movements_crouch()
     }
 }
 
-void jump(Object* dino, int* movements, unsigned* length)
+void fill_movements_crouch()
+{
+    realloc(movements_crouch, 4 * sizeof(int));
+    int arr_copied[4] = {-1,0,0,1};
+    for (int i = 0; i < 4 ; i++)
+    {
+        movements_crouch[i] =arr_copied[i];
+    }
+}
+
+void jump(Object* dino, int* movements, int* length)
 {
     dino->y += movements[0];
 
@@ -109,7 +119,7 @@ void jump(Object* dino, int* movements, unsigned* length)
     }
 }
 
-void crouch(Object* dino, int* movements_crouch, unsigned* length)
+void crouch(Object* dino, int* movements_crouch, int* length)
 {
     dino->y += movements_crouch[0];
 
