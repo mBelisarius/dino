@@ -1,4 +1,4 @@
-#include "world_gen.h"
+#include "worldgen.h"
 
 int game_matrix[Y][X];
 int obj_index = 0, offset = DEFAULT_OFFSET, deaths = 0;
@@ -11,7 +11,8 @@ int randomInt(int min, int max)
 }
 
 // Debug: prints the matrix
-void printMatrix(Object *dino)
+__attribute__((unused))
+void printMatrix(Object* dino)
 {
     for (int i = 0; i < Y; i++)
     {
@@ -25,7 +26,7 @@ void printMatrix(Object *dino)
     printf("Dino Y: %d", dino->y);
 }
 
-void fillMatrix(Object *dino)
+void fillMatrix(Object* dino)
 {
     // Fill the matrix with zeros
     // Clear the previous positions
@@ -78,26 +79,26 @@ void generateObject()
     // Chances: 80% cactus, 20% bird
     int percent_bird = 20;
 
-    type_num = (float)type_num > percent_bird ? 1 : 2;
+    type_num = type_num > percent_bird ? 1 : 2;
 
     Types type = (Types)type_num;
 
     int y;
     switch (type)
     {
-    case Cactus:
-        y = randomInt(Y - 3, Y - 1);
-        break;
+        case Cactus:
+            y = randomInt(Y - 3, Y - 1);
+            break;
 
-    case Ptero:
-        y = randomInt(0, Y - 1);
-        break;
+        case Ptero:
+            y = randomInt(0, Y - 1);
+            break;
 
-    default:
-        exit(1);
+        default:
+            exit(1);
     }
 
-    Object obj = {X - 1, y, type};
+    Object obj = { X - 1, y, type };
 
     objects[obj_index++] = obj;
     offset = DEFAULT_OFFSET;
@@ -118,7 +119,7 @@ void moveObjects()
     }
 }
 
-void run(Object *dino)
+void run(Object* dino)
 {
 
     int speed = INITIAL_TICK_SLEEP;

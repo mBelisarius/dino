@@ -1,6 +1,4 @@
-#ifndef SCORE_H
-#define SCORE_H
+#ifndef DINO_SCORE_SCORE_H
+#define DINO_SCORE_SCORE_H
 
-
-
-#endif
+#endif //DINO_SCORE_SCORE_H

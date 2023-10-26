@@ -1,4 +1,3 @@
-
 #include "events.h"
 
 int movements[6], movements_length = 6;
@@ -6,7 +5,7 @@ int movements_crouch[5], crouch_len;
 bool crouched = false, jumping = false;
 char user_input;
 
-int perceive(Object *dino, int command)
+int perceive(Object* dino, int command)
 {
 
     short dinosaur_parts = 0; // keeps track of how many dinosaur parts are visible
@@ -52,21 +51,21 @@ int perceive(Object *dino, int command)
 
     switch (command)
     {
-    case 119:
-        jumping = true;
-        fill_movements();
-        jump(dino);
-        break;
+        case 119:
+            jumping = true;
+            fill_movements();
+            jump(dino);
+            break;
 
-    case 115:
-        crouched = true;
-        fill_movements_crouch();
-        crouch(dino);
-        break;
+        case 115:
+            crouched = true;
+            fill_movements_crouch();
+            crouch(dino);
+            break;
 
-    default:
-        // faz nada
-        break;
+        default:
+            // faz nada
+            break;
     }
 
     return 0; // alive
@@ -77,21 +76,23 @@ int get_input()
     if (_kbhit())
     {
 
-        user_input = _getch();
+        user_input = (char)_getch();
 
         if (crouched || jumping)
         {
             return -1;
         }
-        int int_input = user_input;
+
+        int int_input = (int)user_input;
         return int_input;
     }
+
     return -1;
 }
 
 void fill_movements()
 {
-    int arr_copied[] = {-2, -1, 0, 0, 1, 2};
+    int arr_copied[] = { -2, -1, 0, 0, 1, 2 };
 
     for (int i = 0; i < 6; i++)
     {
@@ -104,7 +105,7 @@ void fill_movements_crouch()
 {
     crouch_len = 5;
 
-    int arr_copied[] = {1, 0, 0, 0, -1};
+    int arr_copied[] = { 1, 0, 0, 0, -1 };
 
     for (int i = 0; i < crouch_len; i++)
     {
@@ -112,7 +113,7 @@ void fill_movements_crouch()
     }
 }
 
-void jump(Object *dino)
+void jump(Object* dino)
 {
     dino->y += movements[0];
 
@@ -128,7 +129,7 @@ void jump(Object *dino)
     }
 }
 
-void crouch(Object *dino)
+void crouch(Object* dino)
 {
     dino->y += movements_crouch[0];
 

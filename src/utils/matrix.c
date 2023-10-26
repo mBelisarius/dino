@@ -1,12 +1,15 @@
-#include <stdio.h>
-#include <stdlib.h>
 #include "matrix.h"
 
-void buildMatrix(Matrix *x){
+#include <stdio.h>
+#include <stdlib.h>
+
+void buildMatrix(Matrix* x)
+{
     x->vector = malloc((x->lines * x->columns) * sizeof(int));
 }
 
-void fillMatrix(Matrix *x, int valor){
+void fillMatrix(Matrix* x, int valor)
+{
     for (int i = 0; i < x->lines; i++)
     {
 
@@ -18,18 +21,22 @@ void fillMatrix(Matrix *x, int valor){
     }
 }
 
-void setPosition(Matrix *x, int i, int j, int valor){
+void setPosition(Matrix* x, int i, int j, int valor)
+{
     int aux = i * x->columns + j;
 
     x->vector[aux] = valor;
 }
-int getPosition(Matrix *x, int i, int j){
+
+int getPosition(Matrix* x, int i, int j)
+{
     int aux = i * x->columns + j;
 
     return x->vector[aux];
 }
 
-void showMatrix(Matrix *x){
+void showMatrix(Matrix* x)
+{
     for (int i = 0; i < x->lines; i++)
     {
 

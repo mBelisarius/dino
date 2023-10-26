@@ -1,6 +1,5 @@
 #define STB_IMAGE_IMPLEMENTATION
 #include <stdio.h>
-#include <stdlib.h>
 #include "stb_image.h"
 
 //DINO1

@@ -1,16 +1,16 @@
-#ifndef DINO_GAME_H
-#define DINO_GAME_H
+#ifndef DINO_WORLDGEN_WORLDGEN_H
+#define DINO_WORLDGEN_WORLDGEN_H
+
+#include "../events/events.h"
+#include "../graphics/render.h"
+#include "../score/score.h"
+#include "../utils/utils.h"
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <sys\timeb.h>
 #include <time.h>
 #include <Windows.h>
-#include <sys\timeb.h>
-
-#include "../score/score.h"
-#include "../graphics/render.h"
-#include "../events/events.h"
-#include "../utils/utils.h"
 
 #define DEFAULT_OFFSET 12
 #define INITIAL_TICK_SLEEP 400
@@ -34,15 +34,23 @@ typedef struct
 } Object;
 
 extern int game_matrix[Y][X];
+
 extern int obj_index;
+
 extern int offset;
+
 extern Object objects[X];
 
 int randomInt(int min, int max);
-void printMatrix(Object *dino);
-void fillMatrix(Object *dino);
-void generateObject();
-void moveObjects();
-void run(Object *dino);
 
-#endif
+__attribute__((unused)) void printMatrix(Object* dino);
+
+void fillMatrix(Object* dino);
+
+void generateObject();
+
+void moveObjects();
+
+void run(Object* dino);
+
+#endif //DINO_WORLDGEN_WORLDGEN_H
