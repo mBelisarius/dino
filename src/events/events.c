@@ -5,9 +5,23 @@
 #include "../worldgen/world_gen.h"
 #include "events.h"
 
-int movements[6], movements_length = 6;
+
+int movements[6], movements_length = 6, score = 0, highest_score = 0;
 bool crouched = false, jumping = true;
 char user_input;
+
+void addScore()
+{
+    score++;
+}
+
+void highestScore()
+{
+    if (score > highest_score)
+    {
+        highest_score = score;
+    }
+}
 
 void perceive(Object* dino, int** game_matrix, int command)
 {
@@ -38,6 +52,7 @@ void perceive(Object* dino, int** game_matrix, int command)
     if (dinosaur_parts != 2)
     {
         // morreu
+        highestScore();
     }
 
     switch (command)
@@ -95,3 +110,4 @@ void jump(Object* dino, int* movements, unsigned* length)
         jumping = false;
     }
 }
+

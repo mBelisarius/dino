@@ -1,4 +1,5 @@
 #include "world_gen.h"
+#include "src/events/events.h"
 
 int game_matrix[Y][X];
 int obj_index = 0, offset = DEFAULT_OFFSET;
@@ -126,6 +127,8 @@ void run(Object *dino) {
         fillMatrix(dino);
         printMatrix();
         moveObjects();
+
+        addScore();
 
         velocity -= velocity > 50 ? 5 : 0;
     }
