@@ -7,6 +7,6 @@
     int get_input();
     void fill_movements(int* movements);
     void jump(Object* dino, int* movements, int* length);
-    void crouched(Object* dino, int* movements, int* length);
+    void crouch(Object* dino, int* movements, int* length);
 
 #endif
