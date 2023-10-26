@@ -1,7 +1,6 @@
 #ifndef DINO_WORLDGEN_WORLDGEN_H
 #define DINO_WORLDGEN_WORLDGEN_H
 
-#include "../events/events.h"
 #include "../graphics/render.h"
 #include "../score/score.h"
 #include "../utils/utils.h"
@@ -43,7 +42,8 @@ extern Object objects[X];
 
 int randomInt(int min, int max);
 
-__attribute__((unused)) void printMatrix(Object* dino);
+__attribute__((unused))
+void printMatrix(Object* dino);
 
 void fillMatrix(Object* dino);
 
@@ -52,5 +52,7 @@ void generateObject();
 void moveObjects();
 
 void run(Object* dino);
+
+void reset();
 
 #endif //DINO_WORLDGEN_WORLDGEN_H

@@ -27,34 +27,19 @@ add_compile_options(-Wall -Werror -Wno-error=uninitialized
 # =========================================================
 # Targets
 
-add_library("${ProjectName}" src/info.h)
-
-file(GLOB EVENTS_SOURCES src/events/*.c)
-file(GLOB EVENTS_HEADERS src/events/*.h)
-add_library(events ${EVENTS_SOURCES} ${EVENTS_HEADERS})
-
-file(GLOB GRAPHICS_SOURCES src/graphics/*.c)
-file(GLOB GRAPHICS_HEADERS src/graphics/*.h)
-add_library(graphics ${GRAPHICS_SOURCES} ${GRAPHICS_HEADERS})
-
-file(GLOB SCORE_SOURCES src/score/*.c)
-file(GLOB SCORE_HEADERS src/score/*.h)
-add_library(score ${SCORE_SOURCES} ${SCORE_HEADERS})
-
-file(GLOB UTILS_SOURCES src/utils/*.c)
-file(GLOB UTILS_HEADERS src/utils/*.h)
-add_library(utils ${UTILS_SOURCES} ${UTILS_HEADERS})
-
-file(GLOB WORLDGEN_SOURCES src/worldgen/*.c)
-file(GLOB WORLDGEN_HEADERS src/worldgen/*.h)
-add_library(worldgen ${WORLDGEN_SOURCES} ${WORLDGEN_HEADERS})
-
-target_link_libraries("${ProjectName}" PUBLIC
-        events
-        graphics
-        score
-        utils
-        worldgen
+add_library("${ProjectName}"
+        src/events/events.h
+        src/events/events.c
+        src/graphics/render.h
+        src/graphics/render.c
+        src/score/score.h
+        src/score/score.c
+        src/utils/matrix.h
+        src/utils/matrix.c
+        src/utils/utils.h
+        src/utils/utils.c
+        src/worldgen/worldgen.h
+        src/worldgen/worldgen.c
 )
 
 target_include_directories("${ProjectName}" PUBLIC "${CMAKE_SOURCE_DIR}")
@@ -65,5 +50,10 @@ set_target_properties("${ProjectName}" PROPERTIES LINKER_LANGUAGE C)
 
 add_executable("${ProjectName}-main" src/main.c)
 target_link_libraries("${ProjectName}-main" PUBLIC "${ProjectName}")
+
+# --- frames
+
+add_executable("${ProjectName}-frames" assets/frames.c)
+target_include_directories("${ProjectName}-frames" PUBLIC "${CMAKE_SOURCE_DIR}/assets")
 
 # =========================================================

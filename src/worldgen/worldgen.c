@@ -1,7 +1,9 @@
 #include "worldgen.h"
+#include "../events/events.h"
 
 int game_matrix[Y][X];
 int obj_index = 0, offset = DEFAULT_OFFSET, deaths = 0;
+int speed = INITIAL_TICK_SLEEP;
 
 Object objects[X];
 
@@ -119,42 +121,46 @@ void moveObjects()
     }
 }
 
-void run(Object* dino)
+void reset()
 {
+    ERASE_ALL();
 
-    int speed = INITIAL_TICK_SLEEP;
+    speed = INITIAL_TICK_SLEEP;
+    score = 0;
 
+    // Clear objects
+    obj_index = 0;
+}
+
+void run(Object *dino)
+{
     HIDE_CURSOR();
 
-    for (;;)
+    srand(time(NULL));
+    Sleep(speed);
+
+    MOVE_HOME();
+
+    generateObject();
+
+    fillMatrix(dino);
+    // printMatrix();
+
+    printf("Score: %d\t\t|\t\tHigh Score: %d|\t\tDeaths: %d\n\n", score, highest_score, deaths);
+
+    render(game_matrix);
+
+    int command = get_input();
+    int is_alive = perceive(dino, command);
+
+    moveObjects();
+    addScore();
+
+    if (is_alive == -1)
     {
-        srand(time(NULL));
-
-        Sleep(speed);
-        MOVE_HOME();
-
-        generateObject();
-
-        fillMatrix(dino);
-        // printMatrix();
-
-        render(game_matrix);
-
-        int command = get_input();
-        int is_alive = perceive(dino, command);
-
-        moveObjects();
-
-        addScore();
-
-        if (is_alive == -1)
-        {
-            deaths++;
-            continue;
-        }
-
-        printf("\n\nDeaths: %d", deaths);
-
-        speed -= speed > 50 ? 5 : 0;
+        deaths++;
+        return;
     }
+
+    speed -= speed > 50 ? 5 : 0;
 }

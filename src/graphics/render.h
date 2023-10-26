@@ -1,7 +1,7 @@
 #ifndef DINO_RENDER_RENDER_H
 #define DINO_RENDER_RENDER_H
 
-#include "../../Visual/frames _provisory.h"
+#include "frames_provisory.h"
 
 #include <stdio.h>
 #include <stdlib.h>

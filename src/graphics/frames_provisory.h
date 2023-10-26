@@ -1,5 +1,5 @@
-#ifndef FRAMES_H
-#define FRAMES_H
+#ifndef DINO_GRAPHICS_FRAMES_H
+#define DINO_GRAPHICS_FRAMES_H
 
 #define DINO_FRAME1_LINE00 "''''''''"
 #define DINO_FRAME1_LINE01 "''''''''"
@@ -18,4 +18,4 @@
 #define DINO_FRAME1_LINE14 "''''''''"
 #define DINO_FRAME1_LINE15 "''''''''"
 
-#endif
+#endif //DINO_GRAPHICS_FRAMES_H

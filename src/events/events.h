@@ -1,6 +1,7 @@
 #ifndef DINO_EVENTS_EVENTS_H
 #define DINO_EVENTS_EVENTS_H
 
+#include "../score/score.h"
 #include "../worldgen/worldgen.h"
 
 #include <stdio.h>
