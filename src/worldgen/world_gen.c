@@ -151,7 +151,7 @@ void run(Object *dino)
             continue;
         }
 
-        // printf("\nDeaths: %d", deaths);
+        printf("\n\nDeaths: %d", deaths);
 
         speed -= speed > 50 ? 5 : 0;
     }
