@@ -7,19 +7,25 @@
 #include <Windows.h>
 #include <sys\timeb.h>
 
-#define DEFAULT_OFFSET 7
-#define INITIAL_TICK_SLEEP 200
+#include "../utils/utils.h"
 
+#define DEFAULT_OFFSET 12
+#define INITIAL_TICK_SLEEP 400
+
+// #define X 24
+// #define Y 6
 #define X 24
 #define Y 6
 
-typedef enum {
+typedef enum
+{
     Cactus = 1,
     Ptero = 2,
     Dino = 3
 } Types;
 
-typedef struct {
+typedef struct
+{
     int x, y;
     Types type;
 } Object;
