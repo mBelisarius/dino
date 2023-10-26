@@ -1,8 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <conio.h>
-#include <stdbool.h>
-#include "../worldgen/world_gen.h"
+
 #include "events.h"
 
 int movements[6], movements_length = 6;
@@ -10,7 +6,7 @@ int movements_crouch[4], fill_movements_crouch_length = 3;
 bool crouched = false, jumping = false;
 char user_input;
 
-int perceive(Object* dino, int command)
+int perceive(Object *dino, int command)
 {
     if (jumping)
     {
@@ -44,19 +40,19 @@ int perceive(Object* dino, int command)
 
     switch (command)
     {
-        case 119:
-            jumping = true;
-            fill_movements();
-            jump(dino);
+    case 119:
+        jumping = true;
+        fill_movements();
+        jump(dino);
 
-        case 115:
-            crouched = true;
-            fill_movements_crouch();
-            crouch(dino);
-        
-        default:
-            // faz nada
-            break;
+    case 115:
+        crouched = true;
+        fill_movements_crouch();
+        crouch(dino);
+
+    default:
+        // faz nada
+        break;
     }
 
     return 0; // alive
@@ -66,16 +62,16 @@ int get_input()
 {
     if (_kbhit())
     {
-        user_input = _getch();    
-        int int_input = user_input;    
+        user_input = _getch();
+        int int_input = user_input;
         return int_input;
-    }   
+    }
     return -1;
 }
 
 void fill_movements()
 {
-    int arr_copied[6] = {-2, -1, 0, 0, 1, 2};
+    int arr_copied[] = {-2, -1, 0, 0, 1, 2};
 
     for (int i = 0; i < 6; i++)
     {
@@ -87,20 +83,20 @@ void fill_movements()
 void fill_movements_crouch()
 {
     realloc(movements_crouch, 4 * sizeof(int));
-    int arr_copied[4] = {-1,0,0,1};
-    for (int i = 0; i < 4 ; i++)
+    int arr_copied[4] = {-1, 0, 0, 1};
+    for (int i = 0; i < 4; i++)
     {
         movements_crouch[i] = arr_copied[i];
     }
 }
 
-void jump(Object* dino)
+void jump(Object *dino)
 {
     dino->y += movements[0];
 
-    for (int i = 0; i < movements_length-1; i++)
+    for (int i = 0; i < movements_length - 1; i++)
     {
-        movements[i] = movements[i+1];
+        movements[i] = movements[i + 1];
     }
 
     movements_length--;
@@ -110,20 +106,20 @@ void jump(Object* dino)
     }
 }
 
-void crouch(Object* dino)
+void crouch(Object *dino)
 {
     dino->y += movements_crouch[0];
 
-    for (int i = 0; i < fill_movements_crouch_length-1; i++)
+    for (int i = 0; i < fill_movements_crouch_length - 1; i++)
     {
-        movements_crouch[i] = movements_crouch[i+1];
+        movements_crouch[i] = movements_crouch[i + 1];
     }
-    realloc(movements, (fill_movements_crouch_length-1) * sizeof(int));
+    realloc(movements, (fill_movements_crouch_length - 1) * sizeof(int));
 
     fill_movements_crouch_length--;
 
     if (fill_movements_crouch_length == 0)
     {
-       crouched = false;
+        crouched = false;
     }
 }
