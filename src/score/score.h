@@ -2,7 +2,7 @@
 #define DINO_SCORE_SCORE_H
 
 extern int score;
-extern int highest_score;
+extern int highscore;
 
 void addScore();
 void highestScore();

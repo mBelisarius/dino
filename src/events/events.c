@@ -27,15 +27,13 @@ int perceive(Object* dino, int command)
 
     if (dinosaur_parts < 2 && !crouched)
     {
-        reset();
-        highestScore();
+        reset(dino);
         return -1; // dead
     }
 
     if (dinosaur_parts == 0 && crouched)
     {
-        reset();
-        highestScore();
+        reset(dino);
         return -1; // dead
     }
 

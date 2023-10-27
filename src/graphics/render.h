@@ -5,6 +5,9 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+
+#include "../utils/utils.h"
 
 void print_dino(int dinos);
 

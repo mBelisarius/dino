@@ -12,7 +12,7 @@
 #include <Windows.h>
 
 #define DEFAULT_OFFSET 12
-#define INITIAL_TICK_SLEEP 400
+#define INITIAL_TICK_SLEEP 250
 
 // #define X 24
 // #define Y 6
@@ -53,6 +53,6 @@ void moveObjects();
 
 void run(Object* dino);
 
-void reset();
+void reset(Object * dino);
 
 #endif //DINO_WORLDGEN_WORLDGEN_H

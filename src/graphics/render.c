@@ -4,6 +4,8 @@ void render(int matrix[6][24])
 {
     int dinos = 0;
 
+    //BACKGROUND_COLOR(255, 255, 255);
+
     for (int i = 0; i < 6; i++)
     {
 
@@ -21,6 +23,8 @@ void render(int matrix[6][24])
             printf("\n");
         }
     }
+
+    fflush(stdout);
 }
 
 void printer(int current_int, int count_line, int dinos)
@@ -28,16 +32,22 @@ void printer(int current_int, int count_line, int dinos)
     switch (current_int)
     {
         case 1:
+            //Color Teste FOREGROUND_COLOR(r, g ,b)
+            FOREGROUND_COLOR(0, 255, 0);
             print_cacto(count_line);
+            RESET_FOREGROUND();
             break;
         case 2:
             print_ptero(count_line);
+            RESET_FOREGROUND();
             break;
         case 3:
             print_dino(dinos);
+            RESET_FOREGROUND();
             break;
         default:
             printf("''''''''");
+            //printf("        ");
             break;
     }
 }

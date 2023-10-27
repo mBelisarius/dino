@@ -19,7 +19,15 @@
 
 #define SHOW_CURSOR() printf("\e[?25h")
 
-#define SET_COLOR
+#define FOREGROUND_COLOR(r, g, b) printf("\e[38;2;" #r ";" #g ";" #b "m")
+
+#define BACKGROUND_COLOR(r, g, b) printf("\e[48;2;" #r ";" #g ";" #b "m")
+
+#define RESET_FOREGROUND() printf("\e[39m")   
+
+#define RESET_BACKGROUND() printf("\e[49m")   
+
+#define RESET_COLOR() printf("\e[0;0;0m")   
 
 #define MOVE_DOWN(l) printf("\e[" l "B")
 

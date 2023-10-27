@@ -1,6 +1,6 @@
 #include "score.h"
 
-int score = 0, highest_score = 0;
+int score = 0, highscore = 0;
 
 void addScore()
 {
@@ -9,8 +9,8 @@ void addScore()
 
 void highestScore()
 {
-    if (score > highest_score)
+    if (score > highscore)
     {
-        highest_score = score;
+        highscore = score;
     }
 }

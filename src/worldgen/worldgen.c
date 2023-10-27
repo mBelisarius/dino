@@ -4,6 +4,7 @@
 int game_matrix[Y][X];
 int obj_index = 0, offset = DEFAULT_OFFSET, deaths = 0;
 int speed = INITIAL_TICK_SLEEP;
+int current_score = 0, user_highscore = 0;
 
 Object objects[X];
 
@@ -121,12 +122,14 @@ void moveObjects()
     }
 }
 
-void reset()
+void reset(Object * dino)
 {
     ERASE_ALL();
 
     speed = INITIAL_TICK_SLEEP;
     score = 0;
+
+    dino->y = 4;
 
     // Clear objects
     obj_index = 0;
@@ -146,7 +149,9 @@ void run(Object *dino)
     fillMatrix(dino);
     // printMatrix();
 
-    printf("Score: %d\t\t|\t\tHigh Score: %d|\t\tDeaths: %d\n\n", score, highest_score, deaths);
+    printf("Score: %d    |    High Score: %d    |    Deaths: %d", current_score, user_highscore, deaths);
+    ERASE_LEND();
+    printf("\n");
 
     render(game_matrix);
 
@@ -154,13 +159,20 @@ void run(Object *dino)
     int is_alive = perceive(dino, command);
 
     moveObjects();
-    addScore();
+    //addScore();
+    current_score++;
 
     if (is_alive == -1)
     {
+        if (user_highscore < current_score) {
+            user_highscore = current_score;
+        }
+
+        current_score = 0;
         deaths++;
         return;
     }
 
-    speed -= speed > 50 ? 5 : 0;
+    int aux = 5 + 5 * (speed < 150) + 5 * (speed < 120) + 5 * (speed < 100) + 5 * (speed < 60) + 5 * (speed < 200) + 5 * (speed < 300);
+    speed -= speed > 20 && current_score % aux == 0 ? 5 : 0;
 }

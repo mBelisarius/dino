@@ -2,9 +2,13 @@
 #include "./worldgen/worldgen.h"
 
 #include <stdio.h>
+#include <stdbool.h>
+
+char text_buffer[8192];
 
 int main()
 {
+    setvbuf(stdout, text_buffer, _IOFBF, sizeof(text_buffer));
     configureTerminal();
     ERASE_ALL();
 
