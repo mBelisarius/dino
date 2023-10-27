@@ -8,13 +8,10 @@ void render(int matrix[6][24])
 
     for (int i = 0; i < 6; i++)
     {
-
         for (int j = 0; j < 8; j++)
         {
-
             for (int k = 0; k < 24; k++)
             {
-
                 printer(matrix[i][k], j, dinos);
 
                 if (matrix[i][k] == 3)
@@ -88,28 +85,28 @@ void print_ptero(int count)
     switch (count)
     {
         case 0:
-            printf("22222222");
+            printf(PLANE_FRAME01);
             break;
         case 1:
-            printf("22222222");
+            printf(PLANE_FRAME02);
             break;
         case 2:
-            printf("22222222");
+            printf(PLANE_FRAME03);
             break;
         case 3:
-            printf("22222222");
+            printf(PLANE_FRAME04);
             break;
         case 4:
-            printf("22222222");
+            printf(PLANE_FRAME05);
             break;
         case 5:
-            printf("22222222");
+            printf(PLANE_FRAME06);
             break;
         case 6:
-            printf("22222222");
+            printf(PLANE_FRAME07);
             break;
         case 7:
-            printf("22222222");
+            printf(PLANE_FRAME08);
             break;
     }
 }

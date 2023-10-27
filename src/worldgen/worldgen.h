@@ -12,7 +12,7 @@
 #include <Windows.h>
 
 #define DEFAULT_OFFSET 12
-#define INITIAL_TICK_SLEEP 250
+#define INITIAL_TICK_SLEEP 150
 
 // #define X 24
 // #define Y 6
