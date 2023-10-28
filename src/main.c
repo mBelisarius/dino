@@ -1,5 +1,5 @@
-#include "./utils/matrix.h"
 #include "./utils/utils.h"
+#include "./worldgen/game.h"
 #include "./worldgen/worldgen.h"
 
 #include <stdbool.h>
@@ -13,7 +13,7 @@ int main()
     configureTerminal();
     ERASE_ALL();
 
-    Matrix* game_matrix = Matrix_construct(6, 24);
+    Game* game_matrix = Game_construct(24, 6);
     Object objects[24];
     Object dino = {4, 4, Dino};
 

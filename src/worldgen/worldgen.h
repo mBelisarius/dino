@@ -1,6 +1,7 @@
 #ifndef DINO_WORLDGEN_WORLDGEN_H
 #define DINO_WORLDGEN_WORLDGEN_H
 
+#include "./game.h"
 #include "../graphics/render.h"
 #include "../score/score.h"
 #include "../utils/matrix.h"
@@ -36,14 +37,14 @@ extern int offset;
 
 int randomInt(int min, int max);
 
-void fillMatrix(Matrix* game, Object objects[game->columns], Object* dino);
+void fillMatrix(Game* game, Object objects[game->width], Object* dino);
 
-void generateObject(Matrix* game, Object objects[game->columns]);
+void generateObject(Game* game, Object objects[game->width]);
 
 void moveObjects(Object objects[]);
 
-void run(Matrix* game, Object objects[game->columns], Object* dino);
+void run(Game* game, Object objects[game->width], Object* dino);
 
-void reset(Object * dino);
+void reset(Object* dino);
 
 #endif //DINO_WORLDGEN_WORLDGEN_H

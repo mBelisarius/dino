@@ -2,8 +2,8 @@
 #define DINO_RENDER_RENDER_H
 
 #include "frames_provisory.h"
-#include "../utils/matrix.h"
 #include "../utils/utils.h"
+#include "../worldgen/game.h"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -17,6 +17,6 @@ void print_cacto(int count);
 
 void printer(int object, int count_line, int dinos);
 
-void render(Matrix* game);
+void render(Game* game);
 
 #endif //DINO_RENDER_RENDER_H

@@ -2,7 +2,7 @@
 #define DINO_EVENTS_EVENTS_H
 
 #include "../score/score.h"
-#include "../utils/matrix.h"
+#include "../worldgen/game.h"
 #include "../worldgen/worldgen.h"
 
 #include <stdio.h>
@@ -10,7 +10,7 @@
 #include <conio.h>
 #include <stdbool.h>
 
-int perceive(Matrix* game, Object* dino, int command);
+int perceive(Game* game, Object* dino, int command);
 
 int get_input();
 

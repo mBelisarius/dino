@@ -38,6 +38,8 @@ add_library("${ProjectName}"
         src/utils/matrix.c
         src/utils/utils.h
         src/utils/utils.c
+        src/worldgen/game.h
+        src/worldgen/game.c
         src/worldgen/worldgen.h
         src/worldgen/worldgen.c
 )

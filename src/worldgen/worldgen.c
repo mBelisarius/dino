@@ -11,37 +11,37 @@ int randomInt(int min, int max)
     return rand() % max + min;
 }
 
-void fillMatrix(Matrix* game, Object objects[game->columns], Object* dino)
+void fillMatrix(Game* game, Object objects[game->width], Object* dino)
 {
-    Matrix_fill(game, 0);
+    Game_clear(game);
 
     // Draw the objects onto the matrix
     for (int i = 0; i < obj_index; i++)
     {
         Object curr = objects[i];
 
-        Matrix_setValue(game, curr.y, curr.x, (int)curr.type);
+        Game_setValue(game, curr.y, curr.x, (int)curr.type);
 
-        if (curr.type == Cactus && game->columns - curr.y > 1)
+        if (curr.type == Cactus && game->width - curr.y > 1)
         {
-            for (int y = curr.y; y < game->rows; y++)
+            for (int y = curr.y; y < game->height; y++)
             {
-                Matrix_setValue(game, y, curr.x, (int)curr.type);
+                Game_setValue(game, y, curr.x, (int)curr.type);
             }
         }
     }
 
     // Add dino to the matrix overlaying the objects
-    for (int y = dino->y; y < game->rows; y++)
+    for (int y = dino->y; y < game->height; y++)
     {
-        if (Matrix_getValue(game, y, dino->x) == 0)
+        if (Game_getValue(game, y, dino->x) == 0)
         {
-            Matrix_setValue(game, y, dino->x, dino->type);
+            Game_setValue(game, y, dino->x, dino->type);
         }
     }
 }
 
-void generateObject(Matrix* game, Object objects[game->columns])
+void generateObject(Game* game, Object objects[game->width])
 {
     // Avoid objects being to close
     // Offset is controlled by the DEFAULT_OFFSET constant
@@ -64,18 +64,18 @@ void generateObject(Matrix* game, Object objects[game->columns])
     switch (type)
     {
         case Cactus:
-            y = randomInt(game->rows - 3, game->rows - 1);
+            y = randomInt(game->height - 3, game->height - 1);
             break;
 
         case Ptero:
-            y = randomInt(0, game->rows - 1);
+            y = randomInt(0, game->height - 1);
             break;
 
         default:
             exit(1);
     }
 
-    Object obj = { game->columns - 1, y, type };
+    Object obj = { game->width - 1, y, type };
 
     objects[obj_index++] = obj;
     offset = DEFAULT_OFFSET;
@@ -108,7 +108,7 @@ void reset(Object * dino)
     obj_index = 0;
 }
 
-void run(Matrix* game, Object objects[game->columns], Object *dino)
+void run(Game* game, Object objects[game->width], Object *dino)
 {
     HIDE_CURSOR();
 
