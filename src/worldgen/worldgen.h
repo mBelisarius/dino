@@ -1,26 +1,15 @@
 #ifndef DINO_WORLDGEN_WORLDGEN_H
 #define DINO_WORLDGEN_WORLDGEN_H
 
-#include "./game.h"
+#include "../core/game.h"
 
 #define DEFAULT_OFFSET 12
 
+// TODO: Remove global variable
 extern int obj_index;
 
+// TODO: Remove global variable
 extern int offset;
-
-typedef enum
-{
-    Cactus = 1,
-    Ptero = 2,
-    Dino = 3
-} Types;
-
-typedef struct
-{
-    int x, y;
-    Types type;
-} Object;
 
 int randomInt(int min, int max);
 
@@ -32,6 +21,6 @@ void moveObjects(Object objects[]);
 
 void run(Game* game, Object objects[game->width], Object* dino);
 
-void reset(Game* game, Object* dino);
+void resetWorld(Game* game, Object* dino);
 
 #endif //DINO_WORLDGEN_WORLDGEN_H

@@ -1,9 +1,22 @@
-#ifndef DINO_WORLDGEN_GAME_H
-#define DINO_WORLDGEN_GAME_H
+#ifndef DINO_CORE_GAME_H
+#define DINO_CORE_GAME_H
 
-#include "../utils/matrix.h"
+#include "matrix.h"
 
 #define INITIAL_TICK_SLEEP 150
+
+typedef enum
+{
+    Cactus = 1,
+    Ptero = 2,
+    Dino = 3
+} Types;
+
+typedef struct
+{
+    int x, y;
+    Types type;
+} Object;
 
 typedef struct
 {
@@ -25,4 +38,4 @@ void Game_setValue(Game* game, int row, int col, int value);
 
 int Game_getValue(Game* game, int row, int col);
 
-#endif //DINO_WORLDGEN_GAME_H
+#endif //DINO_CORE_GAME_H

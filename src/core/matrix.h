@@ -1,5 +1,5 @@
-#ifndef DINO_UTILS_MATRIX_H
-#define DINO_UTILS_MATRIX_H
+#ifndef DINO_CORE_MATRIX_H
+#define DINO_CORE_MATRIX_H
 
 typedef struct
 {
@@ -18,4 +18,4 @@ int Matrix_getValue(Matrix* matrix, int row, int col);
 
 void Matrix_printf(Matrix* matrix);
 
-#endif //DINO_UTILS_MATRIX_H
+#endif //DINO_CORE_MATRIX_H

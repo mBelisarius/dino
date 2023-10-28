@@ -28,18 +28,20 @@ add_compile_options(-Wall -Werror -Wno-error=uninitialized
 # Targets
 
 add_library("${ProjectName}"
+        src/core/game.h
+        src/core/game.c
+        src/core/matrix.h
+        src/core/matrix.c
+        src/core/run.h
+        src/core/run.c
         src/events/events.h
         src/events/events.c
         src/graphics/render.h
         src/graphics/render.c
         src/score/score.h
         src/score/score.c
-        src/utils/matrix.h
-        src/utils/matrix.c
         src/utils/utils.h
         src/utils/utils.c
-        src/worldgen/game.h
-        src/worldgen/game.c
         src/worldgen/worldgen.h
         src/worldgen/worldgen.c
 )

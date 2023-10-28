@@ -1,5 +1,5 @@
 #include "./utils/utils.h"
-#include "./worldgen/game.h"
+#include "src/core/game.h"
 #include "./worldgen/worldgen.h"
 
 #include <stdio.h>

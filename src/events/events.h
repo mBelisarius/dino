@@ -1,7 +1,7 @@
 #ifndef DINO_EVENTS_EVENTS_H
 #define DINO_EVENTS_EVENTS_H
 
-#include "../worldgen/game.h"
+#include "../core/game.h"
 #include "../worldgen/worldgen.h"
 
 int perceive(Game* game, Object* dino, int command);

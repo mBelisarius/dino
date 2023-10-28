@@ -3,7 +3,7 @@
 
 #include "frames_provisory.h"
 #include "../utils/utils.h"
-#include "../worldgen/game.h"
+#include "../core/game.h"
 
 void print_dino(int dinos);
 

@@ -2,6 +2,7 @@
 
 #include <conio.h>
 
+// TODO: Remove global variable
 int movements[6], movements_length = 6;
 int movements_crouch[5], crouch_len;
 bool crouched = false, jumping = false;
