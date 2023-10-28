@@ -1,5 +1,7 @@
 #include "events.h"
 
+#include <conio.h>
+
 int movements[6], movements_length = 6;
 int movements_crouch[5], crouch_len;
 bool crouched = false, jumping = false;
@@ -8,26 +10,25 @@ char user_input;
 int perceive(Game* game, Object* dino, int command)
 {
     // keeps track of how many dinosaur parts are visible
-    short dinosaur_parts = 0;
+    short dino_parts = 0;
 
     if (crouched)
     {
         for (int x = 0; x < game->width; x++)
         {
-            dinosaur_parts += (Game_getValue(game, dino->y, x) == (int)Dino) ? 1
-                                                                             : 0;
+            dino_parts += (Game_getValue(game, dino->y, x) == (int)Dino) ? 1 : 0;
         }
     }
     else
     {
         for (int y = 0; y < game->height; y++)
         {
-            dinosaur_parts += (Game_getValue(game, y, 4) == (int)Dino) ? 1 : 0;
+            dino_parts += (Game_getValue(game, y, 4) == (int)Dino) ? 1 : 0;
         }
     }
 
     // Is dead
-    if ((dinosaur_parts < 2 && !crouched) || (dinosaur_parts == 0 && crouched))
+    if ((dino_parts < 2 && !crouched) || (dino_parts == 0 && crouched))
     {
         return -1;
     }

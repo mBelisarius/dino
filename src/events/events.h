@@ -1,14 +1,8 @@
 #ifndef DINO_EVENTS_EVENTS_H
 #define DINO_EVENTS_EVENTS_H
 
-#include "../score/score.h"
 #include "../worldgen/game.h"
 #include "../worldgen/worldgen.h"
-
-#include <stdio.h>
-#include <stdlib.h>
-#include <conio.h>
-#include <stdbool.h>
 
 int perceive(Game* game, Object* dino, int command);
 

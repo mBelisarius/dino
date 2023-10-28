@@ -1,8 +1,6 @@
 #ifndef DINO_UTILS_UTILS_H
 #define DINO_UTILS_UTILS_H
 
-#include <Windows.h>
-
 #define TERMINAL_PROCESSING 0x0004
 
 #define SAVE_CURSOR() printf("\e7")

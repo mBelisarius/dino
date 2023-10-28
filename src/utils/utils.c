@@ -1,5 +1,7 @@
 #include "utils.h"
 
+#include <Windows.h>
+
 void configureTerminal()
 {
     HANDLE handle = GetStdHandle(STD_OUTPUT_HANDLE);

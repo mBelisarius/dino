@@ -1,5 +1,7 @@
 #include "render.h"
 
+#include <stdio.h>
+
 void render(Game* game)
 {
     int dinos = 0;

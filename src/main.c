@@ -2,8 +2,8 @@
 #include "./worldgen/game.h"
 #include "./worldgen/worldgen.h"
 
-#include <stdbool.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 char text_buffer[8192];
 

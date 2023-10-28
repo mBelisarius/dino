@@ -5,10 +5,6 @@
 #include "../utils/utils.h"
 #include "../worldgen/game.h"
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-
 void print_dino(int dinos);
 
 void print_ptero(int count);

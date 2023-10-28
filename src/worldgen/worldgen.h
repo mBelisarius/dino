@@ -2,14 +2,6 @@
 #define DINO_WORLDGEN_WORLDGEN_H
 
 #include "./game.h"
-#include "../graphics/render.h"
-#include "../utils/utils.h"
-
-#include <stdio.h>
-#include <stdlib.h>
-#include <sys\timeb.h>
-#include <time.h>
-#include <Windows.h>
 
 #define DEFAULT_OFFSET 12
 

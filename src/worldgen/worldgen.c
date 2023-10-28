@@ -1,6 +1,12 @@
 #include "worldgen.h"
 #include "../events/events.h"
 #include "../score/score.h"
+#include "../graphics/render.h"
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+#include <Windows.h>
 
 int obj_index = 0, offset = DEFAULT_OFFSET;
 
