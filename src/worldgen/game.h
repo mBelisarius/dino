@@ -3,6 +3,8 @@
 
 #include "../utils/matrix.h"
 
+#define INITIAL_TICK_SLEEP 150
+
 typedef struct
 {
     Matrix data;

@@ -1,16 +1,32 @@
 #include "score.h"
 
-int score = 0, highscore = 0;
+int highest_score = 0;
+int deaths = 0;
 
-void addScore()
+void addScore(Game* game)
 {
-    score++;
+    game->score++;
 }
 
-void highestScore()
+int getHighestScore()
 {
-    if (score > highscore)
+    return highest_score;
+}
+
+void setHighestScore(Game* game)
+{
+    if (game->score > highest_score)
     {
-        highscore = score;
+        highest_score = game->score;
     }
+}
+
+void addDeaths()
+{
+    deaths++;
+}
+
+int getDeaths()
+{
+    return deaths;
 }

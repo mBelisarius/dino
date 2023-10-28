@@ -10,8 +10,8 @@ Game* Game_construct(int width, int height)
     game->width = width;
     game->height = height;
 
-    game->speed = 0;
     game->score = 0;
+    game->speed = INITIAL_TICK_SLEEP;
 
     return game;
 }
@@ -25,7 +25,7 @@ void Game_reset(Game* game)
 {
     Game_clear(game);
     game->score = 0;
-    game->speed = 0;
+    game->speed = INITIAL_TICK_SLEEP;
 }
 
 int Game_getValue(Game* game, int row, int col)

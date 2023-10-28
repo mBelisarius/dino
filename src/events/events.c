@@ -14,27 +14,22 @@ int perceive(Game* game, Object* dino, int command)
     {
         for (int x = 0; x < game->width; x++)
         {
-            dinosaur_parts += (Game_getValue(game, dino->y, x) == (int)Dino) ? 1 : 0;
+            dinosaur_parts += (Game_getValue(game, dino->y, x) == (int)Dino) ? 1
+                                                                             : 0;
         }
     }
     else
     {
-        for (int y = 0; y < Y; y++)
+        for (int y = 0; y < game->height; y++)
         {
             dinosaur_parts += (Game_getValue(game, y, 4) == (int)Dino) ? 1 : 0;
         }
     }
 
-    if (dinosaur_parts < 2 && !crouched)
+    // Is dead
+    if ((dinosaur_parts < 2 && !crouched) || (dinosaur_parts == 0 && crouched))
     {
-        reset(dino);
-        return -1; // dead
-    }
-
-    if (dinosaur_parts == 0 && crouched)
-    {
-        reset(dino);
-        return -1; // dead
+        return -1;
     }
 
     if (jumping)

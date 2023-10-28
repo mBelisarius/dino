@@ -1,10 +1,8 @@
 #include "worldgen.h"
 #include "../events/events.h"
-#include "../utils/matrix.h"
+#include "../score/score.h"
 
-int obj_index = 0, offset = DEFAULT_OFFSET, deaths = 0;
-int speed = INITIAL_TICK_SLEEP;
-int current_score = 0, user_highscore = 0;
+int obj_index = 0, offset = DEFAULT_OFFSET;
 
 int randomInt(int min, int max)
 {
@@ -95,12 +93,11 @@ void moveObjects(Object objects[])
     }
 }
 
-void reset(Object * dino)
+void reset(Game* game, Object* dino)
 {
     ERASE_ALL();
 
-    speed = INITIAL_TICK_SLEEP;
-    score = 0;
+    Game_reset(game);
 
     dino->y = 4;
 
@@ -108,12 +105,12 @@ void reset(Object * dino)
     obj_index = 0;
 }
 
-void run(Game* game, Object objects[game->width], Object *dino)
+void run(Game* game, Object objects[game->width], Object* dino)
 {
     HIDE_CURSOR();
 
     srand(time(NULL));
-    Sleep(speed);
+    Sleep(game->speed);
 
     MOVE_HOME();
 
@@ -122,7 +119,9 @@ void run(Game* game, Object objects[game->width], Object *dino)
     fillMatrix(game, objects, dino);
     // printMatrix();
 
-    printf("Score: %d    |    High Score: %d    |    Deaths: %d", current_score, user_highscore, deaths);
+    printf("Score: %5i    |    Highest score: %5i    |    Deaths: %3i",
+           game->score, getHighestScore(), getDeaths());
+
     ERASE_LEND();
     printf("\n");
 
@@ -132,20 +131,21 @@ void run(Game* game, Object objects[game->width], Object *dino)
     int is_alive = perceive(game, dino, command);
 
     moveObjects(objects);
-    //addScore();
-    current_score++;
 
     if (is_alive == -1)
     {
-        if (user_highscore < current_score) {
-            user_highscore = current_score;
-        }
+        setHighestScore(game);
+        Game_reset(game);
+        addDeaths();
 
-        current_score = 0;
-        deaths++;
         return;
     }
 
-    int aux = 5 + 5 * (speed < 150) + 5 * (speed < 120) + 5 * (speed < 100) + 5 * (speed < 60) + 5 * (speed < 200) + 5 * (speed < 300);
-    speed -= speed > 20 && current_score % aux == 0 ? 5 : 0;
+    addScore(game);
+
+    int aux = 5 + 5 * (game->speed < 150) + 5 * (game->speed < 120)
+              + 5 * (game->speed < 100) + 5 * (game->speed < 60)
+              + 5 * (game->speed < 200) + 5 * (game->speed < 300);
+
+    game->speed -= game->speed > 20 && game->score % aux == 0 ? 5 : 0;
 }
