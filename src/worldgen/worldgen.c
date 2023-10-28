@@ -123,7 +123,6 @@ void run(Game* game, Object objects[game->width], Object* dino)
     generateObject(game, objects);
 
     fillMatrix(game, objects, dino);
-    // printMatrix();
 
     printf("Score: %5i    |    Highest score: %5i    |    Deaths: %3i",
            game->score, getHighestScore(), getDeaths());
@@ -141,8 +140,8 @@ void run(Game* game, Object objects[game->width], Object* dino)
     if (is_alive == -1)
     {
         setHighestScore(game);
-        Game_reset(game);
         addDeaths();
+        reset(game, dino);
 
         return;
     }
