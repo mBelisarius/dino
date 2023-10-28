@@ -1,4 +1,4 @@
-#include "matrix.h"
+#include "src/core/matrix.h"
 
 #include <stdio.h>
 #include <stdlib.h>

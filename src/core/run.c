@@ -1,8 +1,8 @@
-#include "run.h"
+#include "src/core/run.h"
 
-#include "../events/events.h"
-#include "../graphics/render.h"
-#include "../score/score.h"
+#include "src/events/events.h"
+#include "src/graphics/render.h"
+#include "src/score/score.h"
 
 #include <stdio.h>
 #include <stdlib.h>

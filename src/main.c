@@ -1,6 +1,6 @@
-#include "./utils/utils.h"
 #include "src/core/game.h"
-#include "./worldgen/worldgen.h"
+#include "src/utils/utils.h"
+#include "src/worldgen/worldgen.h"
 
 #include <stdio.h>
 #include <stdlib.h>

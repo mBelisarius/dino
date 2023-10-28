@@ -1,9 +1,9 @@
 #ifndef DINO_RENDER_RENDER_H
 #define DINO_RENDER_RENDER_H
 
-#include "frames_provisory.h"
-#include "../utils/utils.h"
-#include "../core/game.h"
+#include "src/core/game.h"
+#include "src/graphics/frames_provisory.h"
+#include "src/utils/utils.h"
 
 void print_dino(int dinos);
 

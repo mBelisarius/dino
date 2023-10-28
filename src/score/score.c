@@ -1,4 +1,4 @@
-#include "score.h"
+#include "src/score/score.h"
 
 int highest_score = 0;
 int deaths = 0;

@@ -1,7 +1,7 @@
 #ifndef DINO_CORE_RUN_H
 #define DINO_CORE_RUN_H
 
-#include "./game.h"
+#include "src/core/game.h"
 
 void run(Game* game, Object objects[game->width], Object* dino);
 

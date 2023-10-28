@@ -1,5 +1,6 @@
-#include "worldgen.h"
-#include "../graphics/render.h"
+#include "src/worldgen/worldgen.h"
+
+#include "src/graphics/render.h"
 
 #include <stdio.h>
 #include <stdlib.h>

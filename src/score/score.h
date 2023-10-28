@@ -1,7 +1,7 @@
 #ifndef DINO_SCORE_SCORE_H
 #define DINO_SCORE_SCORE_H
 
-#include "../core/game.h"
+#include "src/core/game.h"
 
 extern int highest_score;
 

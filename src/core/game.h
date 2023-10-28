@@ -1,7 +1,7 @@
 #ifndef DINO_CORE_GAME_H
 #define DINO_CORE_GAME_H
 
-#include "matrix.h"
+#include "src/core/matrix.h"
 
 #define INITIAL_TICK_SLEEP 150
 

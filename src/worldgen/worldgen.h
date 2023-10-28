@@ -1,7 +1,7 @@
 #ifndef DINO_WORLDGEN_WORLDGEN_H
 #define DINO_WORLDGEN_WORLDGEN_H
 
-#include "../core/game.h"
+#include "src/core/game.h"
 
 #define DEFAULT_OFFSET 12
 
