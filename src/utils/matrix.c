@@ -3,46 +3,47 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void buildMatrix(Matrix* x)
+Matrix* Matrix_construct(int lines, int columns)
 {
-    x->vector = malloc((x->lines * x->columns) * sizeof(int));
+    Matrix* matrix = malloc(sizeof(Matrix));
+    matrix->data = malloc((lines * columns) * sizeof(int));
+    matrix->rows = lines;
+    matrix->columns = columns;
+
+    return matrix;
 }
 
-void fillMatrix(Matrix* x, int valor)
+void Matrix_fill(Matrix* matrix, int value)
 {
-    for (int i = 0; i < x->lines; i++)
+    for (int i = 0; i < matrix->rows; i++)
     {
-
-        for (int j = 0; j < x->columns; j++)
+        for (int j = 0; j < matrix->columns; j++)
         {
-            int aux = i * x->columns + j;
-            x->vector[aux] = valor;
+            int aux = i * matrix->columns + j;
+            matrix->data[aux] = value;
         }
     }
 }
 
-void setPosition(Matrix* x, int i, int j, int valor)
+void Matrix_setValue(Matrix* matrix, int row, int col, int value)
 {
-    int aux = i * x->columns + j;
-
-    x->vector[aux] = valor;
+    int pos = row * matrix->columns + col;
+    matrix->data[pos] = value;
 }
 
-int getPosition(Matrix* x, int i, int j)
+int Matrix_getValue(Matrix* matrix, int row, int col)
 {
-    int aux = i * x->columns + j;
-
-    return x->vector[aux];
+    int pos = row * matrix->columns + col;
+    return matrix->data[pos];
 }
 
-void showMatrix(Matrix* x)
+void Matrix_printf(Matrix* matrix)
 {
-    for (int i = 0; i < x->lines; i++)
+    for (int i = 0; i < matrix->rows; i++)
     {
-
-        for (int j = 0; j < x->columns; j++)
+        for (int j = 0; j < matrix->columns; j++)
         {
-            printf("%d", getPosition(x, i, j));
+            printf("%d", Matrix_getValue(matrix, i, j));
         }
         printf("\n");
     }

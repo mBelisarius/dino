@@ -1,8 +1,9 @@
+#include "./utils/matrix.h"
 #include "./utils/utils.h"
 #include "./worldgen/worldgen.h"
 
-#include <stdio.h>
 #include <stdbool.h>
+#include <stdio.h>
 
 char text_buffer[8192];
 
@@ -13,11 +14,12 @@ int main()
     ERASE_ALL();
 
     Object dino = {4, 4, Dino};
+    Matrix* game_matrix = Matrix_construct(6, 24);
 
     system("pause");
     while(true)
     {
-        run(&dino);
+        run(game_matrix, &dino);
     }
 
     return 0;

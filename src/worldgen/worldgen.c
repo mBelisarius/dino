@@ -1,7 +1,7 @@
 #include "worldgen.h"
 #include "../events/events.h"
+#include "../utils/matrix.h"
 
-int game_matrix[Y][X];
 int obj_index = 0, offset = DEFAULT_OFFSET, deaths = 0;
 int speed = INITIAL_TICK_SLEEP;
 int current_score = 0, user_highscore = 0;
@@ -13,56 +13,32 @@ int randomInt(int min, int max)
     return rand() % max + min;
 }
 
-// Debug: prints the matrix
-__attribute__((unused))
-void printMatrix(Object* dino)
+void fillMatrix(Matrix* game_matrix, Object* dino)
 {
-    for (int i = 0; i < Y; i++)
-    {
-        for (int j = 0; j < X; j++)
-        {
-            printf("%d", game_matrix[i][j]);
-        }
-        printf("\n");
-    }
-
-    printf("Dino Y: %d", dino->y);
-}
-
-void fillMatrix(Object* dino)
-{
-    // Fill the matrix with zeros
-    // Clear the previous positions
-    for (int i = 0; i < Y; i++)
-    {
-        for (int j = 0; j < X; j++)
-        {
-            game_matrix[i][j] = 0;
-        }
-    }
+    Matrix_fill(game_matrix, 0);
 
     // Draw the objects onto the matrix
     for (int i = 0; i < obj_index; i++)
     {
         Object curr = objects[i];
 
-        game_matrix[curr.y][curr.x] = (int)curr.type;
+        Matrix_setValue(game_matrix, curr.y, curr.x, (int)curr.type);
 
         if (curr.type == Cactus && Y - curr.y > 1)
         {
-            for (int j = curr.y; j < Y; j++)
+            for (int y = curr.y; y < Y; y++)
             {
-                game_matrix[j][curr.x] = (int)curr.type;
+                Matrix_setValue(game_matrix, y, curr.x, (int)curr.type);
             }
         }
     }
 
     // Add dino to the matrix overlaying the objects
-    for (int i = dino->y; i < Y; i++)
+    for (int y = dino->y; y < Y; y++)
     {
-        if (game_matrix[i][dino->x] == 0)
+        if (Matrix_getValue(game_matrix, y, dino->x) == 0)
         {
-            game_matrix[i][dino->x] = (int)dino->type;
+            Matrix_setValue(game_matrix, y, dino->x, dino->type);
         }
     }
 }
@@ -135,7 +111,7 @@ void reset(Object * dino)
     obj_index = 0;
 }
 
-void run(Object *dino)
+void run(Matrix* game_matrix, Object *dino)
 {
     HIDE_CURSOR();
 
@@ -146,7 +122,7 @@ void run(Object *dino)
 
     generateObject();
 
-    fillMatrix(dino);
+    fillMatrix(game_matrix, dino);
     // printMatrix();
 
     printf("Score: %d    |    High Score: %d    |    Deaths: %d", current_score, user_highscore, deaths);
@@ -156,7 +132,7 @@ void run(Object *dino)
     render(game_matrix);
 
     int command = get_input();
-    int is_alive = perceive(dino, command);
+    int is_alive = perceive(game_matrix, dino, command);
 
     moveObjects();
     //addScore();

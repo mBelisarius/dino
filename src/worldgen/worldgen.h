@@ -3,6 +3,7 @@
 
 #include "../graphics/render.h"
 #include "../score/score.h"
+#include "../utils/matrix.h"
 #include "../utils/utils.h"
 
 #include <stdio.h>
@@ -14,8 +15,6 @@
 #define DEFAULT_OFFSET 12
 #define INITIAL_TICK_SLEEP 150
 
-// #define X 24
-// #define Y 6
 #define X 24
 #define Y 6
 
@@ -32,7 +31,7 @@ typedef struct
     Types type;
 } Object;
 
-extern int game_matrix[Y][X];
+//extern int game_matrix[Y][X];
 
 extern int obj_index;
 
@@ -42,16 +41,13 @@ extern Object objects[X];
 
 int randomInt(int min, int max);
 
-__attribute__((unused))
-void printMatrix(Object* dino);
-
-void fillMatrix(Object* dino);
+void fillMatrix(Matrix* game_matrix, Object* dino);
 
 void generateObject();
 
 void moveObjects();
 
-void run(Object* dino);
+void run(Matrix* game_matrix, Object* dino);
 
 void reset(Object * dino);
 

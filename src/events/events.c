@@ -5,23 +5,23 @@ int movements_crouch[5], crouch_len;
 bool crouched = false, jumping = false;
 char user_input;
 
-int perceive(Object* dino, int command)
+int perceive(Matrix* game_matrix, Object* dino, int command)
 {
-    short dinosaur_parts = 0; // keeps track of how many dinosaur parts are visible
+    // keeps track of how many dinosaur parts are visible
+    short dinosaur_parts = 0;
 
     if (crouched)
     {
-        int curr_row = dino->y;
-        for (int i = 0; i < X; i++)
+        for (int x = 0; x < X; x++)
         {
-            dinosaur_parts += (game_matrix[curr_row][i] == (int)Dino) ? 1 : 0;
+            dinosaur_parts += (Matrix_getValue(game_matrix, dino->y, x) == (int)Dino) ? 1 : 0;
         }
     }
     else
     {
-        for (int i = 0; i < Y; i++)
+        for (int y = 0; y < Y; y++)
         {
-            dinosaur_parts += (game_matrix[i][4] == (int)Dino) ? 1 : 0;
+            dinosaur_parts += (Matrix_getValue(game_matrix, y, 4) == (int)Dino) ? 1 : 0;
         }
     }
 
@@ -64,7 +64,6 @@ int perceive(Object* dino, int command)
             break;
 
         default:
-            // faz nada
             break;
     }
 
@@ -137,8 +136,6 @@ void crouch(Object* dino)
     {
         movements_crouch[i] = movements_crouch[i + 1];
     }
-
-    // realloc(movements, (crouch_len - 1) * sizeof(int));
 
     crouch_len--;
 

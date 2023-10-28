@@ -1,21 +1,23 @@
 #include "render.h"
 
-void render(int matrix[6][24])
+void render(Matrix* matrix)
 {
     int dinos = 0;
 
     //BACKGROUND_COLOR(255, 255, 255);
 
-    for (int i = 0; i < 6; i++)
+    for (int y = 0; y < Y; y++)
     {
-        for (int j = 0; j < 8; j++)
+        for (int k = 0; k < 8; k++)
         {
-            for (int k = 0; k < 24; k++)
+            for (int x = 0; x < X; x++)
             {
-                printer(matrix[i][k], j, dinos);
+                printer(Matrix_getValue(matrix, y, x), k, dinos);
 
-                if (matrix[i][k] == 3)
+                if (Matrix_getValue(matrix, y, x) == 3)
+                {
                     dinos++;
+                }
             }
             printf("\n");
         }
@@ -24,27 +26,23 @@ void render(int matrix[6][24])
     fflush(stdout);
 }
 
-void printer(int current_int, int count_line, int dinos)
+void printer(int object, int count_line, int dinos)
 {
-    switch (current_int)
+    switch (object)
     {
         case 1:
-            //Color Teste FOREGROUND_COLOR(r, g ,b)
             FOREGROUND_COLOR(0, 255, 0);
             print_cacto(count_line);
             RESET_FOREGROUND();
             break;
         case 2:
             print_ptero(count_line);
-            RESET_FOREGROUND();
             break;
         case 3:
             print_dino(dinos);
-            RESET_FOREGROUND();
             break;
         default:
             printf("''''''''");
-            //printf("        ");
             break;
     }
 }

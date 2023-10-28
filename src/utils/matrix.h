@@ -3,19 +3,19 @@
 
 typedef struct
 {
-    int* vector;
-    int lines;
+    int* data;
+    int rows;
     int columns;
 } Matrix;
 
-void buildMatrix(Matrix* x);
+Matrix* Matrix_construct(int lines, int columns);
 
-void fillMatrix(Matrix* x, int valor);
+void Matrix_fill(Matrix* matrix, int value);
 
-void setPosition(Matrix* x, int i, int j, int valor);
+void Matrix_setValue(Matrix* matrix, int row, int col, int value);
 
-int getPosition(Matrix* x, int i, int j);
+int Matrix_getValue(Matrix* matrix, int row, int col);
 
-void showMatrix(Matrix* x);
+void Matrix_printf(Matrix* matrix);
 
 #endif //DINO_UTILS_MATRIX_H
