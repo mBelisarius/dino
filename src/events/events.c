@@ -5,23 +5,23 @@ int movements_crouch[5], crouch_len;
 bool crouched = false, jumping = false;
 char user_input;
 
-int perceive(Matrix* game_matrix, Object* dino, int command)
+int perceive(Matrix* game, Object* dino, int command)
 {
     // keeps track of how many dinosaur parts are visible
     short dinosaur_parts = 0;
 
     if (crouched)
     {
-        for (int x = 0; x < X; x++)
+        for (int x = 0; x < game->columns; x++)
         {
-            dinosaur_parts += (Matrix_getValue(game_matrix, dino->y, x) == (int)Dino) ? 1 : 0;
+            dinosaur_parts += (Matrix_getValue(game, dino->y, x) == (int)Dino) ? 1 : 0;
         }
     }
     else
     {
         for (int y = 0; y < Y; y++)
         {
-            dinosaur_parts += (Matrix_getValue(game_matrix, y, 4) == (int)Dino) ? 1 : 0;
+            dinosaur_parts += (Matrix_getValue(game, y, 4) == (int)Dino) ? 1 : 0;
         }
     }
 

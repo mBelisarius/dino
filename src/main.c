@@ -13,13 +13,14 @@ int main()
     configureTerminal();
     ERASE_ALL();
 
-    Object dino = {4, 4, Dino};
     Matrix* game_matrix = Matrix_construct(6, 24);
+    Object objects[24];
+    Object dino = {4, 4, Dino};
 
     system("pause");
     while(true)
     {
-        run(game_matrix, &dino);
+        run(game_matrix, objects, &dino);
     }
 
     return 0;

@@ -10,7 +10,7 @@
 #include <conio.h>
 #include <stdbool.h>
 
-int perceive(Matrix* game_matrix, Object* dino, int command);
+int perceive(Matrix* game, Object* dino, int command);
 
 int get_input();
 

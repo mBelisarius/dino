@@ -6,44 +6,42 @@ int obj_index = 0, offset = DEFAULT_OFFSET, deaths = 0;
 int speed = INITIAL_TICK_SLEEP;
 int current_score = 0, user_highscore = 0;
 
-Object objects[X];
-
 int randomInt(int min, int max)
 {
     return rand() % max + min;
 }
 
-void fillMatrix(Matrix* game_matrix, Object* dino)
+void fillMatrix(Matrix* game, Object objects[game->columns], Object* dino)
 {
-    Matrix_fill(game_matrix, 0);
+    Matrix_fill(game, 0);
 
     // Draw the objects onto the matrix
     for (int i = 0; i < obj_index; i++)
     {
         Object curr = objects[i];
 
-        Matrix_setValue(game_matrix, curr.y, curr.x, (int)curr.type);
+        Matrix_setValue(game, curr.y, curr.x, (int)curr.type);
 
-        if (curr.type == Cactus && Y - curr.y > 1)
+        if (curr.type == Cactus && game->columns - curr.y > 1)
         {
-            for (int y = curr.y; y < Y; y++)
+            for (int y = curr.y; y < game->rows; y++)
             {
-                Matrix_setValue(game_matrix, y, curr.x, (int)curr.type);
+                Matrix_setValue(game, y, curr.x, (int)curr.type);
             }
         }
     }
 
     // Add dino to the matrix overlaying the objects
-    for (int y = dino->y; y < Y; y++)
+    for (int y = dino->y; y < game->rows; y++)
     {
-        if (Matrix_getValue(game_matrix, y, dino->x) == 0)
+        if (Matrix_getValue(game, y, dino->x) == 0)
         {
-            Matrix_setValue(game_matrix, y, dino->x, dino->type);
+            Matrix_setValue(game, y, dino->x, dino->type);
         }
     }
 }
 
-void generateObject()
+void generateObject(Matrix* game, Object objects[game->columns])
 {
     // Avoid objects being to close
     // Offset is controlled by the DEFAULT_OFFSET constant
@@ -66,24 +64,24 @@ void generateObject()
     switch (type)
     {
         case Cactus:
-            y = randomInt(Y - 3, Y - 1);
+            y = randomInt(game->rows - 3, game->rows - 1);
             break;
 
         case Ptero:
-            y = randomInt(0, Y - 1);
+            y = randomInt(0, game->rows - 1);
             break;
 
         default:
             exit(1);
     }
 
-    Object obj = { X - 1, y, type };
+    Object obj = { game->columns - 1, y, type };
 
     objects[obj_index++] = obj;
     offset = DEFAULT_OFFSET;
 }
 
-void moveObjects()
+void moveObjects(Object objects[])
 {
     for (int i = 0; i < obj_index; i++)
     {
@@ -92,7 +90,6 @@ void moveObjects()
         if (objects[i].x == 0)
         {
             obj_index--;
-
             objects[i] = objects[obj_index];
         }
     }
@@ -111,7 +108,7 @@ void reset(Object * dino)
     obj_index = 0;
 }
 
-void run(Matrix* game_matrix, Object *dino)
+void run(Matrix* game, Object objects[game->columns], Object *dino)
 {
     HIDE_CURSOR();
 
@@ -120,21 +117,21 @@ void run(Matrix* game_matrix, Object *dino)
 
     MOVE_HOME();
 
-    generateObject();
+    generateObject(game, objects);
 
-    fillMatrix(game_matrix, dino);
+    fillMatrix(game, objects, dino);
     // printMatrix();
 
     printf("Score: %d    |    High Score: %d    |    Deaths: %d", current_score, user_highscore, deaths);
     ERASE_LEND();
     printf("\n");
 
-    render(game_matrix);
+    render(game);
 
     int command = get_input();
-    int is_alive = perceive(game_matrix, dino, command);
+    int is_alive = perceive(game, dino, command);
 
-    moveObjects();
+    moveObjects(objects);
     //addScore();
     current_score++;
 

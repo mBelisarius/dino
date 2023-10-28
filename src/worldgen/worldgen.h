@@ -15,7 +15,6 @@
 #define DEFAULT_OFFSET 12
 #define INITIAL_TICK_SLEEP 150
 
-#define X 24
 #define Y 6
 
 typedef enum
@@ -31,23 +30,19 @@ typedef struct
     Types type;
 } Object;
 
-//extern int game_matrix[Y][X];
-
 extern int obj_index;
 
 extern int offset;
 
-extern Object objects[X];
-
 int randomInt(int min, int max);
 
-void fillMatrix(Matrix* game_matrix, Object* dino);
+void fillMatrix(Matrix* game, Object objects[game->columns], Object* dino);
 
-void generateObject();
+void generateObject(Matrix* game, Object objects[game->columns]);
 
-void moveObjects();
+void moveObjects(Object objects[]);
 
-void run(Matrix* game_matrix, Object* dino);
+void run(Matrix* game, Object objects[game->columns], Object* dino);
 
 void reset(Object * dino);
 

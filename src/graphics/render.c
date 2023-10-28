@@ -1,20 +1,20 @@
 #include "render.h"
 
-void render(Matrix* matrix)
+void render(Matrix* game)
 {
     int dinos = 0;
 
     //BACKGROUND_COLOR(255, 255, 255);
 
-    for (int y = 0; y < Y; y++)
+    for (int y = 0; y < game->rows; y++)
     {
         for (int k = 0; k < 8; k++)
         {
-            for (int x = 0; x < X; x++)
+            for (int x = 0; x < game->columns; x++)
             {
-                printer(Matrix_getValue(matrix, y, x), k, dinos);
+                printer(Matrix_getValue(game, y, x), k, dinos);
 
-                if (Matrix_getValue(matrix, y, x) == 3)
+                if (Matrix_getValue(game, y, x) == 3)
                 {
                     dinos++;
                 }
